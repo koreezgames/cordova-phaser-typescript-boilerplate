@@ -1,0 +1,107 @@
+import {
+  IReactionDisposer,
+  IReactionOptions,
+  IReactionPublic,
+  IWhenOptions,
+  reaction,
+  when,
+} from 'mobx';
+
+export class MediatorsUtil {
+  private static __disposeReaction<TD>(
+    map: Map<(...args: any[]) => void, IReactionDisposer>,
+    effect: (arg: TD, r: IReactionPublic) => void,
+  ): void {
+    if (map.has(effect)) {
+      const reactionDisposer: IReactionDisposer = map.get(effect);
+      reactionDisposer();
+      map.delete(effect);
+    }
+  }
+
+  protected _reactionMap: Map<(...args: any[]) => void, IReactionDisposer>;
+  protected _whenMap: Map<(...args: any[]) => void, IReactionDisposer>;
+
+  constructor(context: object) {
+    this.__mediatorContext = context;
+    this._reactionMap = new Map();
+    this.initialize();
+  }
+  private static readonly __consoleArgs: string[] = [
+    ``,
+    `background: ${'#2A3351'}`,
+    `background: ${'#364D98'}`,
+    `color: ${'#F4F6FE'}; background: ${'#3656C1'};`,
+    `background: ${'#364D98'}`,
+    `background: ${'#2A3351'}`,
+  ];
+
+  private __mediatorContext: object;
+
+  public initialize(): void {
+    MediatorsUtil.__consoleArgs[0] = `%c %c %c ${
+      this.__mediatorContext.constructor.name
+    }: initialize %c %c `;
+    console.log.apply(console, MediatorsUtil.__consoleArgs);
+  }
+
+  public destroy(): void {
+    this._reactionMap.forEach((reactionDisposer: IReactionDisposer) => {
+      reactionDisposer();
+    });
+    this._reactionMap.clear();
+    this._reactionMap = null;
+    MediatorsUtil.__consoleArgs[0] = `%c %c %c ${
+      this.__mediatorContext.constructor.name
+    }: destroy %c %c `;
+    console.log.apply(console, MediatorsUtil.__consoleArgs);
+  }
+
+  public addReaction<TD>(
+    expression: (r: IReactionPublic) => TD,
+    effect: (arg: TD, r: IReactionPublic) => void,
+    opts?: IReactionOptions,
+  ): this {
+    this._reactionMap.set(
+      effect,
+      reaction(expression, effect.bind(this.__mediatorContext), opts),
+    );
+    return this;
+  }
+
+  public addReactionWhen<TD>(
+    predicate: () => boolean,
+    expression: (r: IReactionPublic) => TD,
+    effect: (arg: TD, r: IReactionPublic) => void,
+    reactionOptions?: IReactionOptions,
+    whenOptions?: IWhenOptions,
+  ): this {
+    const whenDisposer: IReactionDisposer = when(
+      predicate,
+      () => {
+        if (this._whenMap.has(effect)) {
+          this._whenMap.delete(effect);
+        }
+        this._reactionMap.set(
+          effect,
+          reaction(
+            expression,
+            effect.bind(this.__mediatorContext),
+            reactionOptions,
+          ),
+        );
+      },
+      whenOptions,
+    );
+    this._whenMap.set(effect, whenDisposer);
+    return this;
+  }
+
+  public removeReaction<TD>(
+    effect: (arg: TD, r: IReactionPublic) => void,
+  ): this {
+    MediatorsUtil.__disposeReaction(this._reactionMap, effect);
+    MediatorsUtil.__disposeReaction(this._whenMap, effect);
+    return this;
+  }
+}
