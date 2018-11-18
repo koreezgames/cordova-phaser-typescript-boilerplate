@@ -61,6 +61,11 @@ const developmentConfig = merge([
   }),
 ])
 
+const developmentDeviceConfig = merge([
+  parts.envVar('device'),
+  developmentConfig,
+])
+
 const productionConfig = merge([
   parts.sourceMaps('source-map'),
 
@@ -129,14 +134,25 @@ const productionConfig = merge([
 const analyzeConfig = merge([parts.analyze()])
 
 module.exports = env => {
+  let envConfig
+  switch (env) {
+    case 'production':
+      envConfig = productionConfig
+      break
+    case 'device':
+      envConfig = developmentDeviceConfig
+      break
+    default:
+      envConfig = developmentConfig
+      break
+  }
   const config = merge(
     commonConfig,
     {
       stats: 'minimal',
     },
-    env === 'production' ? productionConfig : developmentConfig,
+    envConfig,
   )
-
   if (process.env.npm_config_analyze) {
     return merge(config, analyzeConfig)
   }

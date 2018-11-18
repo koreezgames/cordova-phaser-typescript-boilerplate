@@ -7,13 +7,11 @@ import { SignalCommandMapExtension } from '@robotlegsjs/signalcommandmap';
 import { Preload, Main, Boot } from './scenes';
 
 export class Game extends Phaser.Game {
-  private _context: Context;
-
   constructor(gameConfig: any) {
     super(gameConfig);
     this.resize();
-    this._context = new Context();
-    this._context
+    this.__context = new Context();
+    this.__context
       .install(MVCSBundle, PhaserBundle, SignalCommandMapExtension)
       .configure(new ContextSceneManager(this.scene))
       .configure(SceneMediatorConfig)
@@ -24,6 +22,7 @@ export class Game extends Phaser.Game {
     (this as any).scene.add(SceneKey.main, new Main(SceneKey.main));
     (this as any).scene.start(SceneKey.boot);
   }
+  private __context: Context;
 
   public resize(): void {
     const { width, height } = this.config as any;
