@@ -89,22 +89,6 @@ document.addEventListener('deviceready', () => {
         );
       }
     }
-
-    document.addEventListener(
-      'backbutton',
-      () => {
-        navigator.notification.confirm(
-          'close',
-          (choice: number) => {
-            if (choice === 1) {
-              navigator.app.exitApp();
-            }
-          },
-          'Are you sure?',
-        );
-      },
-      false,
-    );
   }
 });
 
