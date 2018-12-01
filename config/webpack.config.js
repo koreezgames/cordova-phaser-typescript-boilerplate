@@ -85,7 +85,6 @@ const productionConfig = merge([
       minimizer: [
         new UglifyJsPlugin({
           test: /\.js$/,
-          exclude: /^vendor/,
           uglifyOptions: {
             keep_fnames: true,
             compress: {
@@ -97,35 +96,7 @@ const productionConfig = merge([
             },
           },
         }),
-        new UglifyJsPlugin({
-          test: /\.js$/,
-          exclude: /^main/,
-          uglifyOptions: {
-            compress: {
-              drop_console: true,
-            },
-            output: {
-              comments: false,
-              beautify: false,
-            },
-          },
-        }),
       ],
-      splitChunks: {
-        chunks: 'async',
-        minSize: 30000,
-        minChunks: 1,
-        maxAsyncRequests: 5,
-        maxInitialRequests: 3,
-        name: true,
-        cacheGroups: {
-          commons: {
-            test: /[\\/]node_modules[\\/]/,
-            name: 'vendor',
-            chunks: 'all',
-          },
-        },
-      },
     },
   },
   parts.loadJs({}),
