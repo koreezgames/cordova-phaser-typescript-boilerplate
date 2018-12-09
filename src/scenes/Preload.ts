@@ -1,11 +1,28 @@
-import { loadAtlases, loadImages } from '../assetLoader';
-import { Atlases, Images } from '../assets';
+import {
+  loadAtlases,
+  loadAudio,
+  loadBitmapfonts,
+  loadImages,
+} from '../assetLoader';
+import { Atlases, Audios, Bitmapfonts, Images } from '../assets';
 import { SceneKey } from '../constants/SceneKey';
 import { AbstractScene } from './AbstractScene';
 
 export class Preload extends AbstractScene {
   public preload(): void {
-    loadAtlases(this, Atlases.Main.Atlas);
+    this.i18n.initialize(
+      {
+        fallbackLng: 'en',
+        loadPath: 'assets/locales/{{lng}}/{{ns}}.json',
+        debug: false,
+      },
+      () => {
+        //
+      },
+    );
+    loadAtlases(this, Atlases);
+    loadAudio(this, Audios);
+    loadBitmapfonts(this, Bitmapfonts);
     loadImages(this, Images);
   }
 

@@ -49,14 +49,14 @@ const handleAssetTree = (node, extension, extensionPair) => {
         .ShellString('\nexport class ' + toPascalCase(name) + ' {')
         .toEnd(assetsClassFile);
       shell
-        .ShellString(`\npublic static Name: string =  '${name}'`)
+        .ShellString(`\npublic static readonly Name: string =  '${name}'`)
         .toEnd(assetsClassFile);
 
       shell
         .ShellString(
-          `\npublic static ${toPascalCase(extension + 'URL')}: string =  '${
-            node.path
-          }'`,
+          `\npublic static readonly ${toPascalCase(
+            extension + 'URL',
+          )}: string =  '${node.path}'`,
         )
         .toEnd(assetsClassFile);
 
@@ -65,7 +65,7 @@ const handleAssetTree = (node, extension, extensionPair) => {
       if (fs.existsSync(pairPath)) {
         shell
           .ShellString(
-            `\npublic static ${toPascalCase(
+            `\npublic static readonly ${toPascalCase(
               extensionPair + 'URL',
             )}: string =  '${pairPath}'`,
           )
@@ -74,7 +74,7 @@ const handleAssetTree = (node, extension, extensionPair) => {
         shell.ShellString(`\n/* missing source pair */`).toEnd(assetsClassFile);
         shell
           .ShellString(
-            `\n/* public static ${toPascalCase(
+            `\n/* public static readonly ${toPascalCase(
               extensionPair + 'URL',
             )}: string =  '${pairPath}'*/`,
           )
@@ -125,14 +125,14 @@ const handleAtlasesTree = node => {
           .toEnd(assetsClassFile);
 
         shell
-          .ShellString(`\npublic static Name: string =  '${name}'`)
+          .ShellString(`\npublic static readonly Name: string =  '${name}'`)
           .toEnd(assetsClassFile);
         shell
-          .ShellString(`\npublic static AtlasURL: string =  '${path}'`)
+          .ShellString(`\npublic static readonly AtlasURL: string =  '${path}'`)
           .toEnd(assetsClassFile);
         shell
           .ShellString(
-            `\npublic static TextureURL: string =  '${path.replace(
+            `\npublic static readonly TextureURL: string =  '${path.replace(
               'json',
               'png',
             )}'`,
@@ -170,7 +170,7 @@ const handleAtlasesTree = node => {
               : frameFull.substring(0, indexOfExtension);
           shell
             .ShellString(
-              `\npublic static ${toPascalCase(
+              `\npublic static readonly ${toPascalCase(
                 frameName,
               )}:{w:number; h:number} = {w:${sourceSize.w}, h:${sourceSize.h}}`,
             )
@@ -211,7 +211,7 @@ const handleFontsTree = node => {
           .toEnd(assetsClassFile);
         shell.ShellString('\nexport class Font {').toEnd(assetsClassFile);
         shell
-          .ShellString(`\npublic static Name: string =  '${name}'`)
+          .ShellString(`\npublic static readonly Name: string =  '${name}'`)
           .toEnd(assetsClassFile);
         const cssFileData = fs.readFileSync(
           `assets/fonts/${name}.css`,
@@ -221,10 +221,10 @@ const handleFontsTree = node => {
           cssFileData,
         )[3];
         shell
-          .ShellString(`\npublic static Family: string =  '${family}'`)
+          .ShellString(`\npublic static readonly Family: string =  '${family}'`)
           .toEnd(assetsClassFile);
         shell
-          .ShellString(`\npublic static CSS: string = '${node.path}'`)
+          .ShellString(`\npublic static readonly CSS: string = '${node.path}'`)
           .toEnd(assetsClassFile);
 
         shell.ShellString(`\n}`).toEnd(assetsClassFile);
@@ -260,16 +260,18 @@ const loopTree = node => {
       .ShellString('\nexport class ' + toPascalCase(name) + ' {')
       .toEnd(assetsClassFile);
     shell
-      .ShellString(`\npublic static Name: string =  '${name}'`)
+      .ShellString(`\npublic static readonly Name: string =  '${name}'`)
       .toEnd(assetsClassFile);
     shell
-      .ShellString(`\npublic static FileURL: string =  '${node.path}'`)
+      .ShellString(`\npublic static readonly FileURL: string =  '${node.path}'`)
       .toEnd(assetsClassFile);
     shell
-      .ShellString(`\npublic static Extension: string =  '${node.extension}'`)
+      .ShellString(
+        `\npublic static readonly Extension: string =  '${node.extension}'`,
+      )
       .toEnd(assetsClassFile);
     shell
-      .ShellString(`\npublic static Size: string =  '${node.size}'`)
+      .ShellString(`\npublic static readonly Size: string =  '${node.size}'`)
       .toEnd(assetsClassFile);
     shell.ShellString('\n}').toEnd(assetsClassFile);
   }

@@ -1,6 +1,7 @@
 import 'reflect-metadata';
 import './phaser';
 import { NinePatchPlugin } from '@koreez/phaser3-ninepatch';
+import { I18nPlugin } from '@koreez/phaser3-i18n';
 import { isNullOrUndefined } from 'util';
 import { ScalingVariant } from './assetLoader';
 import { Fonts } from './assets';
@@ -34,16 +35,24 @@ function setUpDimension(): void {
 }
 
 function startGame(): void {
-  const gameConfig: IConfig = {
+  const gameConfig: GameConfig = {
     type: Phaser.AUTO,
     width: canvasWidth,
     height: canvasHeight,
     parent: 'game-container',
     scene: [],
+    //@ts-ignore
     transparent: true,
     plugins: {
       global: [
         { key: 'NinePatchPlugin', plugin: NinePatchPlugin, start: true },
+      ],
+      scene: [
+        {
+          key: 'i18nPlugin',
+          mapping: 'i18n',
+          plugin: I18nPlugin,
+        },
       ],
     },
   };
@@ -56,15 +65,15 @@ function startGame(): void {
 
   console.log(
     'scaleX :',
-    gameConfig.width / +process.env.DESIGN_WIDTH,
+    +gameConfig.width / +process.env.DESIGN_WIDTH,
     'scaleY :',
-    gameConfig.height / +process.env.DESIGN_HEIGHT,
+    +gameConfig.height / +process.env.DESIGN_HEIGHT,
   );
 }
 
 function loadWebFont(callback: () => any): void {
-  let webFontLoaderOptions: WebFontLoader.Config = {};
   if (Object.keys(Fonts).length > 0) {
+    const webFontLoaderOptions: WebFontLoader.Config = {};
     webFontLoaderOptions.custom = {
       families: [],
       urls: [],
@@ -79,9 +88,6 @@ function loadWebFont(callback: () => any): void {
       webFontLoaderOptions.custom.families.push(webFont.Family);
       webFontLoaderOptions.custom.urls.push(webFont.CSS);
     }
-  }
-
-  if (webFontLoaderOptions !== null) {
     webFontLoaderOptions.active = callback;
     WebFontLoader.load(webFontLoaderOptions);
   } else {
@@ -114,14 +120,3 @@ document.addEventListener('deviceready', () => {
     }
   }
 });
-
-export interface IConfig {
-  type: number;
-  width: number;
-  height: number;
-  parent: string;
-  scene: any[];
-  transparent: boolean;
-  dom?: any;
-  plugins: any;
-}

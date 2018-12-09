@@ -17,8 +17,8 @@ export class Main extends AbstractScene {
         Atlases.Main.Atlas.Frames.Bg,
       )
       .setScale(
-        canvasWidth / +process.env.DESIGN_WIDTH,
-        canvasHeight / +process.env.DESIGN_HEIGHT,
+        canvasWidth / Atlases.Main.Atlas.FrameSourceSizes.Bg.w,
+        canvasHeight / Atlases.Main.Atlas.FrameSourceSizes.Bg.h,
       );
 
     this.__ninePatch = this.add.ninePatch(

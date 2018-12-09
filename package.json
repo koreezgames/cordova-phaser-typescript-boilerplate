@@ -60,6 +60,7 @@
     "webpack-merge": "^4.1.4"
   },
   "dependencies": {
+    "@koreez/phaser3-i18n": "^2.0.4",
     "@koreez/phaser3-ninepatch": "^1.2.1",
     "@robotlegsjs/core": "^1.0.0",
     "@robotlegsjs/macrobot": "^1.0.0",

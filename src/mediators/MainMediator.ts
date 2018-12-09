@@ -13,7 +13,7 @@ export class MainMediator extends AbstractSceneMediator<Main> {
 
   public initialize(): void {
     super.initialize();
-    this.gameStartupSignal.dispatch(Phaser.Math.Between(1000, 5000));
+    this.gameStartupSignal.dispatch(1000 + Math.random() * 4000);
   }
 
   // override

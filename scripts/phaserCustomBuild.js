@@ -21,33 +21,34 @@ var Phaser = {
 
     UpdateList: require('gameobjects/UpdateList'),
 
+    BuildGameObject: require('gameobjects/BuildGameObject'),
+
     GameObjectFactory: require('gameobjects/GameObjectFactory'),
 
     Image: require('gameobjects/image/Image'),
 
     Sprite: require('gameobjects/sprite/Sprite'),
 
-    PathFollower: require('gameobjects/pathfollower/PathFollower'),
-
     Container: require('gameobjects/container/Container'),
 
     RenderTexture: require('gameobjects/rendertexture/RenderTexture'),
-    Graphics: require('gameobjects/graphics/Graphics'),
+
+    BitmapText: require('gameobjects/bitmaptext/static/BitmapText'),
 
     Factories: {
       Image: require('gameobjects/image/ImageFactory'),
       Sprite: require('gameobjects/sprite/SpriteFactory'),
       Container: require('gameobjects/container/ContainerFactory'),
-      Graphics: require('gameobjects/graphics/GraphicsFactory'),
       Text: require('gameobjects/text/static/TextFactory'),
+      BitmapText: require('gameobjects/bitmaptext/static/BitmapTextFactory'),
     },
 
     Creators: {
       Image: require('gameobjects/image/ImageCreator'),
       Sprite: require('gameobjects/sprite/SpriteCreator'),
       Container: require('gameobjects/container/ContainerCreator'),
-      Graphics: require('gameobjects/graphics/GraphicsCreator'),
       Text: require('gameobjects/text/static/TextCreator'),
+      BitmapText: require('gameobjects/bitmaptext/static/BitmapTextCreator'),
     },
   },
 
@@ -55,31 +56,24 @@ var Phaser = {
     FileTypes: {
       ImageFile: require('loader/filetypes/ImageFile'),
       AtlasJSONFile: require('loader/filetypes/AtlasJSONFile'),
+      BitmapFont: require('loader/filetypes/BitmapFontFile'),
+      AudioFile: require('loader/filetypes/AudioFile'),
     },
 
     LoaderPlugin: require('loader/LoaderPlugin'),
   },
 
-  Math: {
-    Between: require('math/Between'),
-    Vector2: require('math/Vector2'),
-  },
-
-  Curves: {
-    CubicBezier: require('curves/CubicBezierCurve'),
-    Ellipse: require('curves/EllipseCurve'),
-    Path: require('curves/path/Path'),
-  },
+  Math: {},
 
   Plugins: {
     BasePlugin: require('plugins/BasePlugin'),
+    ScenePlugin: require('plugins/ScenePlugin'),
   },
 
   Tweens: { TweenManager: require('tweens/TweenManager') },
 
   Input: {
     InputPlugin: require('input/InputPlugin'),
-    Keyboard: { KeyboardPlugin: require('input/keyboard/KeyboardPlugin') },
   },
 
   Clock: { TimerEvent: require('time/Clock') },
@@ -87,13 +81,8 @@ var Phaser = {
   Utils: {
     String: { UUID: require('utils/string/UUID') },
     Array: { GetRandom: require('utils/array/GetRandom') },
-  },
-
-  Geom: {
-    Circle: require('geom/circle/Circle'),
-    Rectangle: require('geom/rectangle/Rectangle'),
-    Intersects: { CircleToCircle: require('geom/intersects/CircleToCircle') },
-  },
+    Objects: { GetAdvancedValue: require('utils/object/GetAdvancedValue') },
+  }
 };
 
 if (typeof PLUGIN_CAMERA3D) {
