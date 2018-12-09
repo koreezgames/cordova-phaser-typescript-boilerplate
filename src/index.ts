@@ -3,7 +3,9 @@ import './phaser';
 import { NinePatchPlugin } from '@koreez/phaser3-ninepatch';
 import { isNullOrUndefined } from 'util';
 import { ScalingVariant } from './assetLoader';
+import { Fonts } from './assets';
 import { Game } from './Game';
+import WebFontLoader from 'webfontloader';
 
 export let canvasWidth: number;
 export let canvasHeight: number;
@@ -61,9 +63,30 @@ function startGame(): void {
 }
 
 function loadWebFont(callback: () => any): void {
-  setTimeout(() => {
+  let webFontLoaderOptions: WebFontLoader.Config = {};
+  if (Object.keys(Fonts).length > 0) {
+    webFontLoaderOptions.custom = {
+      families: [],
+      urls: [],
+    };
+
+    for (const font in Fonts) {
+      if (!Fonts.hasOwnProperty(font)) {
+        continue;
+      }
+      //@ts-ignore
+      const webFont: any = Fonts[font].Font;
+      webFontLoaderOptions.custom.families.push(webFont.Family);
+      webFontLoaderOptions.custom.urls.push(webFont.CSS);
+    }
+  }
+
+  if (webFontLoaderOptions !== null) {
+    webFontLoaderOptions.active = callback;
+    WebFontLoader.load(webFontLoaderOptions);
+  } else {
     callback();
-  }, 200);
+  }
 }
 
 window.onload = () => {

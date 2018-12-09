@@ -6,7 +6,7 @@ const assetsClassFile = 'src/assets.ts';
 
 tree = dirTree('./assets/', {
   normalizePath: true,
-  extensions: /\.json|xml|png|jpg|jpeg|mp3|ogg$/,
+  extensions: /\.json|xml|png|jpg|jpeg|mp3|ogg|css|eot|svg|ttf|woff$/,
 });
 
 const toCamelCase = string =>
@@ -109,23 +109,30 @@ const handleAtlasesTree = node => {
         const fileData = fs.readFileSync(node.path, 'ascii');
         const json = JSON.parse(fileData);
 
-        const name = node.name.substring(0, node.name.indexOf('.'));
-
+        let name = node.name.substring(0, node.name.indexOf('.'));
+        let path = node.path;
+        if (name.endsWith('-sd')) {
+          return;
+        } else if (name.endsWith('-hd')) {
+          name = name.replace('-hd', '');
+          path = path.replace('-hd', '');
+        }
         shell
           .ShellString(`\nexport namespace  ${toPascalCase(name)} {`)
           .toEnd(assetsClassFile);
         shell
           .ShellString('\nexport class ' + toPascalCase('atlas') + ' {')
           .toEnd(assetsClassFile);
+
         shell
           .ShellString(`\npublic static Name: string =  '${name}'`)
           .toEnd(assetsClassFile);
         shell
-          .ShellString(`\npublic static AtlasURL: string =  '${node.path}'`)
+          .ShellString(`\npublic static AtlasURL: string =  '${path}'`)
           .toEnd(assetsClassFile);
         shell
           .ShellString(
-            `\npublic static TextureURL: string =  '${node.path.replace(
+            `\npublic static TextureURL: string =  '${path.replace(
               'json',
               'png',
             )}'`,
@@ -135,22 +142,93 @@ const handleAtlasesTree = node => {
         shell.ShellString(`\n}`).toEnd(assetsClassFile);
 
         shell.ShellString(`\nexport namespace  Atlas {`).toEnd(assetsClassFile);
-        shell.ShellString(`\nexport enum Frames {`).toEnd(assetsClassFile);
 
-        for (let frame in json['frames']) {
-          frameFull = json['frames'][frame]['filename'];
+        shell.ShellString(`\nexport enum Frames {`).toEnd(assetsClassFile);
+        for (let frame in json['textures'][0]['frames']) {
+          frameFull = json['textures'][0]['frames'][frame]['filename'];
           indexOfExtension = frameFull.lastIndexOf('.');
-          frame =
+          frameName =
             indexOfExtension === -1
               ? frameFull
               : frameFull.substring(0, indexOfExtension);
           shell
-            .ShellString(`\n ${toPascalCase(frame)} = '${frameFull}',`)
+            .ShellString(`\n ${toPascalCase(frameName)} = '${frameFull}',`)
             .toEnd(assetsClassFile);
         }
+        shell.ShellString(`\n}`).toEnd(assetsClassFile);
+
+        shell
+          .ShellString(`\nexport class FrameSourceSizes {`)
+          .toEnd(assetsClassFile);
+        for (let frame in json['textures'][0]['frames']) {
+          sourceSize = json['textures'][0]['frames'][frame]['sourceSize'];
+          frameFull = json['textures'][0]['frames'][frame]['filename'];
+          indexOfExtension = frameFull.lastIndexOf('.');
+          frameName =
+            indexOfExtension === -1
+              ? frameFull
+              : frameFull.substring(0, indexOfExtension);
+          shell
+            .ShellString(
+              `\npublic static ${toPascalCase(
+                frameName,
+              )}:{w:number; h:number} = {w:${sourceSize.w}, h:${sourceSize.h}}`,
+            )
+            .toEnd(assetsClassFile);
+        }
+        shell.ShellString(`\n}`).toEnd(assetsClassFile);
 
         shell.ShellString(`\n}`).toEnd(assetsClassFile);
         shell.ShellString(`\n}`).toEnd(assetsClassFile);
+      } catch (e) {
+        console.error('\x1b[31m%s\x1b[0m', `Atlas Data File Error: ${e}`);
+      }
+    }
+  }
+};
+
+const handleFontsTree = node => {
+  if (node.type === 'directory') {
+    if (node.children.length === 0) {
+      console.warn(
+        '\x1b[33m%s\x1b[0m',
+        `Warning!!!\nEmpty directory ${node.path}`,
+      );
+    } else {
+      shell
+        .ShellString(`\nexport namespace  ${toPascalCase(node.name)} {`)
+        .toEnd(assetsClassFile);
+      node.children.forEach(childNode => handleFontsTree(childNode));
+      shell.ShellString(`\n}`).toEnd(assetsClassFile);
+    }
+  } else {
+    if (node.extension === '.css') {
+      try {
+        const name = node.name.substring(0, node.name.indexOf('.'));
+
+        shell
+          .ShellString(`\nexport namespace  ${toPascalCase(name)} {`)
+          .toEnd(assetsClassFile);
+        shell.ShellString('\nexport class Font {').toEnd(assetsClassFile);
+        shell
+          .ShellString(`\npublic static Name: string =  '${name}'`)
+          .toEnd(assetsClassFile);
+        const cssFileData = fs.readFileSync(
+          `assets/fonts/${name}.css`,
+          'ascii',
+        );
+        const family = /font-family:(\s)*('|")([\w-]*\W*)('|")/g.exec(
+          cssFileData,
+        )[3];
+        shell
+          .ShellString(`\npublic static Family: string =  '${family}'`)
+          .toEnd(assetsClassFile);
+        shell
+          .ShellString(`\npublic static CSS: string = '${node.path}'`)
+          .toEnd(assetsClassFile);
+
+        shell.ShellString(`\n}`).toEnd(assetsClassFile);
+
         shell.ShellString(`\n}`).toEnd(assetsClassFile);
       } catch (e) {
         console.error('\x1b[31m%s\x1b[0m', `Atlas Data File Error: ${e}`);
@@ -167,6 +245,8 @@ const loopTree = node => {
       handleAssetTree(node, 'xml', 'png');
     } else if (node.name.toLowerCase() === 'audios') {
       handleAssetTree(node, 'mp3', 'ogg');
+    } else if (node.name.toLowerCase() === 'fonts') {
+      handleFontsTree(node);
     } else {
       shell
         .ShellString(`\nexport namespace ${toPascalCase(node.name)} {`)
@@ -198,6 +278,9 @@ const loopTree = node => {
 shell
   .ShellString('/* AUTO GENERATED FILE. DO NOT MODIFY !!! */\n\n')
   .to(assetsClassFile);
+shell
+  .ShellString('\n// tslint:disable:naming-convention\n\n')
+  .toEnd(assetsClassFile);
 tree.children.forEach(child => loopTree(child));
 
 shell.exec(' tslint --fix src/assets.ts');
