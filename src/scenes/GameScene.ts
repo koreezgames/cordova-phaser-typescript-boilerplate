@@ -4,7 +4,7 @@ import { Atlases, Images } from '../assets';
 import { $x } from '../utils';
 import { AbstractScene } from './AbstractScene';
 
-export class Main extends AbstractScene {
+export class GameScene extends AbstractScene {
   private __ninePatch: NinePatch;
   private __direction: number = 1;
 

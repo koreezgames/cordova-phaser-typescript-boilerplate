@@ -1,6 +1,6 @@
 import { injectable } from '@robotlegsjs/core';
-import { Preload } from '../scenes/';
+import { BootScene } from '../scenes/BootScene';
 import { AbstractSceneMediator } from './AbstractSceneMediator';
 
 @injectable()
-export class PreloadMediator extends AbstractSceneMediator<Preload> {}
+export class BootSceneMediator extends AbstractSceneMediator<BootScene> {}

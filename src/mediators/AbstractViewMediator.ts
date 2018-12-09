@@ -1,7 +1,7 @@
 import { injectable } from '@robotlegsjs/core';
 import { ViewMediator } from '@robotlegsjs/phaser';
 import { IReactionOptions, IReactionPublic } from 'mobx';
-import { AbstractView } from '../views';
+import { AbstractView } from '../views/AbstractView';
 import { MediatorsUtil } from './MediatorsUtil';
 
 @injectable()

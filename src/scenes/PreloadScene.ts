@@ -8,7 +8,7 @@ import { Atlases, Audios, Bitmapfonts, Images } from '../assets';
 import { SceneKey } from '../constants/SceneKey';
 import { AbstractScene } from './AbstractScene';
 
-export class Preload extends AbstractScene {
+export class PreloadScene extends AbstractScene {
   public preload(): void {
     this.i18n.initialize(
       {

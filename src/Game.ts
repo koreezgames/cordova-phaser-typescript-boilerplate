@@ -4,7 +4,9 @@ import { RobotlegsConfig } from './config/RobotlegsConfig';
 import { SceneMediatorConfig } from './config/SceneMediatorConfig';
 import { SceneKey } from './constants/SceneKey';
 import { SignalCommandMapExtension } from '@robotlegsjs/signalcommandmap';
-import { Preload, Main, Boot } from './scenes';
+import { BootScene } from './scenes/BootScene';
+import { PreloadScene } from './scenes/PreloadScene';
+import { GameScene } from './scenes/GameScene';
 
 export class Game extends Phaser.Game {
   constructor(gameConfig: any) {
@@ -17,9 +19,9 @@ export class Game extends Phaser.Game {
       .configure(SceneMediatorConfig)
       .configure(RobotlegsConfig)
       .initialize();
-    (this as any).scene.add(SceneKey.boot, new Boot(SceneKey.boot));
-    (this as any).scene.add(SceneKey.preload, new Preload(SceneKey.preload));
-    (this as any).scene.add(SceneKey.main, new Main(SceneKey.main));
+    (this as any).scene.add(SceneKey.boot, new BootScene(SceneKey.boot));
+    (this as any).scene.add(SceneKey.preload, new PreloadScene(SceneKey.preload));
+    (this as any).scene.add(SceneKey.main, new GameScene(SceneKey.main));
     (this as any).scene.start(SceneKey.boot);
   }
   private __context: Context;

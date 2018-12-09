@@ -1,11 +1,11 @@
 import { inject, injectable } from '@robotlegsjs/core';
 import { GameModel } from '../models/GameModel';
-import { Main } from '../scenes';
-import { GameStartupSignal } from '../signals';
+import { GameScene } from '../scenes/GameScene';
+import { GameStartupSignal } from '../signals/GameStartupSignal';
 import { AbstractSceneMediator } from './AbstractSceneMediator';
 
 @injectable()
-export class MainMediator extends AbstractSceneMediator<Main> {
+export class GameSceneMediator extends AbstractSceneMediator<GameScene> {
   @inject(GameModel)
   public gameModel: GameModel;
   @inject(GameStartupSignal)
