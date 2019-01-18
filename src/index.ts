@@ -50,7 +50,8 @@ function startGame(): void {
       scene: [
         {
           key: 'i18nPlugin',
-          sceneKey: 'i18n',
+          //@ts-ignore
+          mapping: 'i18n',
           plugin: I18nPlugin,
         },
       ],
