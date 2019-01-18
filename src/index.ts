@@ -11,6 +11,7 @@ import {
   isDeviceEmulation,
   isIPhoneXEmulation,
   isOnDevice,
+  isIPhoneXScreenSize,
 } from './utils';
 import { FAT_REDUCER_RATIO, CANVAS_CONTAINER_ID } from './constants';
 

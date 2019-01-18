@@ -1,5 +1,9 @@
 import { isNullOrUndefined } from 'util';
-import { DEVICES_WITH_NOTCH, IPHONE_X_SCREEN, SLOW_DEVICES } from './constants';
+import {
+  DEVICES_WITH_NOTCH,
+  IPHONE_X_SCREEN_SIZES,
+  SLOW_DEVICES,
+} from './constants';
 
 export function getCircularReplacer(): any {
   const seen: WeakSet<any> = new WeakSet();
@@ -33,19 +37,22 @@ export function isOnDevice(): boolean {
 }
 
 export function isIPhoneXEmulation(): boolean {
-  return (
-    isDeviceEmulation() &&
-    IPHONE_X_SCREEN.width === window.screen.width * window.devicePixelRatio &&
-    IPHONE_X_SCREEN.height === window.screen.height * window.devicePixelRatio
-  );
+  return isDeviceEmulation() && isIPhoneXScreenSize();
+}
+
+export function isIPhoneXScreenSize(): boolean {
+  const w: number = window.screen.width * window.devicePixelRatio;
+  const h: number = window.screen.height * window.devicePixelRatio;
+  for (const size of IPHONE_X_SCREEN_SIZES) {
+    if (size.width === w && size.height === h) {
+      return true;
+    }
+  }
+  return false;
 }
 
 export function isIPhoneXSimulator(): boolean {
-  return (
-    window.device.model === 'x86_64' &&
-    IPHONE_X_SCREEN.width === window.screen.width * window.devicePixelRatio &&
-    IPHONE_X_SCREEN.height === window.screen.height * window.devicePixelRatio
-  );
+  return window.device.model === 'x86_64' && isIPhoneXScreenSize();
 }
 
 export function hasNotch(): boolean {
