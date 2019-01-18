@@ -107,7 +107,6 @@ export class GameScene extends AbstractScene {
         },
       )
       .setOrigin(1, 1);
-
     super.create();
   }
 

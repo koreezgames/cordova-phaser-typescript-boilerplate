@@ -6,7 +6,12 @@ import { isNullOrUndefined } from 'util';
 import { Fonts } from './assets';
 import { Game } from './Game';
 import WebFontLoader from 'webfontloader';
-import { isFat, isDeviceEmulation, isIPhoneXEmulation } from './utils';
+import {
+  isFat,
+  isDeviceEmulation,
+  isIPhoneXEmulation,
+  isOnDevice,
+} from './utils';
 import { FAT_REDUCER_RATIO, CANVAS_CONTAINER_ID } from './constants';
 
 function getScale(): any {
@@ -16,7 +21,7 @@ function getScale(): any {
     //@ts-ignore
     mode: Phaser.DOM.FIT,
   };
-  if (!isDeviceEmulation()) {
+  if (!isDeviceEmulation() && !isOnDevice()) {
     scale.width = +process.env.DESIGN_WIDTH;
     scale.height = +process.env.DESIGN_HEIGHT;
     return scale;

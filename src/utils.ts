@@ -25,7 +25,11 @@ export function isFat({
 }
 
 export function isDeviceEmulation(): boolean {
-  return !window.cordova && __ENV__ === 'device';
+  return __ENV__ === 'device';
+}
+
+export function isOnDevice(): boolean {
+  return !isNullOrUndefined(window.cordova);
 }
 
 export function isIPhoneXEmulation(): boolean {
@@ -36,11 +40,22 @@ export function isIPhoneXEmulation(): boolean {
   );
 }
 
+export function isIPhoneXSimulator(): boolean {
+  return (
+    window.device.model === 'x86_64' &&
+    IPHONE_X_SCREEN.width === window.screen.width * window.devicePixelRatio &&
+    IPHONE_X_SCREEN.height === window.screen.height * window.devicePixelRatio
+  );
+}
+
 export function hasNotch(): boolean {
   if (isNullOrUndefined(window.device)) {
-    return false;
+    return isIPhoneXEmulation();
   }
-  return DEVICES_WITH_NOTCH.indexOf(window.device.model) !== -1;
+  return (
+    DEVICES_WITH_NOTCH.indexOf(window.device.model) !== -1 ||
+    isIPhoneXSimulator()
+  );
 }
 
 export function isSlowDevice(): boolean {
