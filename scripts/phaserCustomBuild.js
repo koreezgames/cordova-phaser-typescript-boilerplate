@@ -14,6 +14,8 @@ var Phaser = {
 
   Scene: require('src/scene/Scene'),
 
+  DOM: require('src/dom'),
+
   Scenes: { ScenePlugin: require('src/scene/ScenePlugin') },
 
   GameObjects: {

@@ -11,40 +11,36 @@ import { GameScene } from './scenes/GameScene';
 export class Game extends Phaser.Game {
   constructor(gameConfig: any) {
     super(gameConfig);
-    this.resize();
     this.__context = new Context();
     this.__context
       .install(MVCSBundle, PhaserBundle, SignalCommandMapExtension)
       .configure(new ContextSceneManager(this.scene))
       .configure(SceneMediatorConfig)
       .configure(RobotlegsConfig)
-      .initialize();
-    (this as any).scene.add(SceneKey.boot, new BootScene(SceneKey.boot));
-    (this as any).scene.add(SceneKey.preload, new PreloadScene(SceneKey.preload));
-    (this as any).scene.add(SceneKey.main, new GameScene(SceneKey.main));
-    (this as any).scene.start(SceneKey.boot);
+      .initialize(this.__robotlegsInitialized);
   }
+
+  private static readonly __consoleArgs: string[] = [
+    ``,
+    `background: ${'#2DFFFE'}`,
+    `background: ${'#29FD2F'}`,
+    `background: ${'#FFFD38'}`,
+    `background: ${'#FC0D1B'}`,
+    `color: ${'#000000'}; background: ${'#ffffff'};`,
+  ];
+
   private __context: Context;
 
-  public resize(): void {
-    const { width, height } = this.config as any;
-
-    const scale: { x: number; y: number } = {
-      x: (window.innerWidth || width) / width,
-      y: (window.innerHeight || height) / height,
-    };
-    if (!window.cordova && __ENV__ !== 'device') {
-      const browserScale: number = Math.min(
-        window.innerHeight / height,
-        window.innerWidth / width,
-      );
-      scale.x = scale.y = browserScale;
-    }
-    this.canvas.style.position = 'absolute';
-    this.canvas.style.width = width * scale.x + 'px';
-    this.canvas.style.height = height * scale.y + 'px';
-    this.canvas.style.left = (window.innerWidth - width * scale.x) * 0.5 + 'px';
-    this.canvas.style.top =
-      (window.innerHeight - height * scale.y) * 0.5 + 'px';
-  }
+  private __robotlegsInitialized = () => {
+    Game.__consoleArgs[0] = `%c %c %c %c %c ${this.constructor.name} Size(${
+      //@ts-ignore
+      this.scale.width
+      //@ts-ignore
+    }x${this.scale.height}) `;
+    console.log.apply(console, Game.__consoleArgs);
+    this.scene.add(SceneKey.boot, new BootScene(SceneKey.boot));
+    this.scene.add(SceneKey.preload, new PreloadScene(SceneKey.preload));
+    this.scene.add(SceneKey.main, new GameScene(SceneKey.main));
+    this.scene.start(SceneKey.boot);
+  };
 }

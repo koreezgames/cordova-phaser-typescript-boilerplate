@@ -7,32 +7,33 @@ import { Fonts } from './assets';
 import { Game } from './Game';
 import WebFontLoader from 'webfontloader';
 
-export let canvasWidth: number;
-export let canvasHeight: number;
+let canvasWidth: number;
+let canvasHeight: number;
 
-function setUpDimension(): void {
-  let designWidth: number = +process.env.DESIGN_WIDTH;
-  let designHeight: number = +process.env.DESIGN_HEIGHT;
+function getScale(): any {
+  const scale: any = {
+    //@ts-ignore
+    autoCenter: Phaser.DOM.CENTER_BOTH,
+    //@ts-ignore
+    mode: Phaser.DOM.FIT,
+  };
   if (!window.cordova && __ENV__ !== 'device') {
-    canvasWidth = designWidth;
-    canvasHeight = designHeight;
+    scale.width = +process.env.DESIGN_WIDTH;
+    scale.height = +process.env.DESIGN_HEIGHT;
     return;
   }
-  const width: number = window.screen.width * window.devicePixelRatio;
-  const height: number = window.screen.height * window.devicePixelRatio;
-  const designRatio: number = designWidth / designHeight;
-  const canvasRatio: number = width / height;
-  const ratioMultiplier: number = designRatio / canvasRatio;
-  canvasWidth = designWidth * (width < height ? 1 : ratioMultiplier);
-  canvasHeight = designHeight * (width < height ? ratioMultiplier : 1);
+  scale.width = window.screen.width * window.devicePixelRatio;
+  scale.height = window.screen.height * window.devicePixelRatio;
+  return scale;
 }
 
 function startGame(): void {
   const gameConfig: GameConfig = {
     type: Phaser.AUTO,
-    width: canvasWidth,
-    height: canvasHeight,
-    parent: 'game-container',
+    scale: {
+      parent: 'game-container',
+      ...getScale(),
+    },
     scene: [],
     //@ts-ignore
     transparent: true,
@@ -52,17 +53,6 @@ function startGame(): void {
   };
 
   new Game(gameConfig);
-
-  console.log('Game Started!');
-
-  console.log('width :', gameConfig.width, 'height :', gameConfig.height);
-
-  console.log(
-    'scaleX :',
-    +gameConfig.width / +process.env.DESIGN_WIDTH,
-    'scaleY :',
-    +gameConfig.height / +process.env.DESIGN_HEIGHT,
-  );
 }
 
 function loadWebFont(callback: () => any): void {
@@ -91,7 +81,6 @@ function loadWebFont(callback: () => any): void {
 
 window.onload = () => {
   loadWebFont(() => {
-    setUpDimension();
     startGame();
   });
 };
