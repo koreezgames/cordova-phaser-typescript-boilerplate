@@ -37,7 +37,6 @@ export class GameSceneMediator extends AbstractSceneMediator<GameScene> {
     height: number;
     rotationDirection: number;
   }): void {
-    console.log(width);
     this.scene.redraw(width, height, rotationDirection);
   }
 }

@@ -6,9 +6,8 @@ import { isNullOrUndefined } from 'util';
 import { Fonts } from './assets';
 import { Game } from './Game';
 import WebFontLoader from 'webfontloader';
-
-let canvasWidth: number;
-let canvasHeight: number;
+import { isFat } from './utils';
+import { FAT_REDUCER_RATIO } from './constants';
 
 function getScale(): any {
   const scale: any = {
@@ -20,10 +19,14 @@ function getScale(): any {
   if (!window.cordova && __ENV__ !== 'device') {
     scale.width = +process.env.DESIGN_WIDTH;
     scale.height = +process.env.DESIGN_HEIGHT;
-    return;
+    return scale;
   }
   scale.width = window.screen.width * window.devicePixelRatio;
   scale.height = window.screen.height * window.devicePixelRatio;
+  if (isFat(scale)) {
+    scale.width = +process.env.DESIGN_WIDTH;
+    scale.height = Math.round(+process.env.DESIGN_HEIGHT * FAT_REDUCER_RATIO);
+  }
   return scale;
 }
 
