@@ -32,8 +32,8 @@ export class GameScene extends AbstractScene {
     this.__ninePatch = this.add.ninePatch(
       this.__width * 0.5,
       this.__height * 0.5,
-      30,
-      30,
+      this.__width * 0.2,
+      this.__height * 0.2,
       Images.SquareGreen.Name,
       null,
       {
@@ -44,35 +44,59 @@ export class GameScene extends AbstractScene {
       },
     );
     this.add
-      .ninePatch(0, 0, 100, 200, Images.SquareGreen.Name, null, {
-        bottom: 14, // Amount of pixels for bottom
-        left: 6, // Amount of pixels for left
-        right: 6, // Amount of pixels for right
-        top: 10, // Amount of pixels for top
-      })
+      .ninePatch(
+        0,
+        0,
+        this.__width * 0.2,
+        this.__height * 0.2,
+        Images.SquareGreen.Name,
+        null,
+        {
+          bottom: 14, // Amount of pixels for bottom
+          left: 6, // Amount of pixels for left
+          right: 6, // Amount of pixels for right
+          top: 10, // Amount of pixels for top
+        },
+      )
       .setOrigin(0, 0);
     this.add
-      .ninePatch(this.__width, 0, 100, 200, Images.SquareGreen.Name, null, {
-        bottom: 14, // Amount of pixels for bottom
-        left: 6, // Amount of pixels for left
-        right: 6, // Amount of pixels for right
-        top: 10, // Amount of pixels for top
-      })
+      .ninePatch(
+        this.__width,
+        0,
+        this.__width * 0.2,
+        this.__height * 0.2,
+        Images.SquareGreen.Name,
+        null,
+        {
+          bottom: 14, // Amount of pixels for bottom
+          left: 6, // Amount of pixels for left
+          right: 6, // Amount of pixels for right
+          top: 10, // Amount of pixels for top
+        },
+      )
       .setOrigin(1, 0);
     this.add
-      .ninePatch(0, this.__height, 100, 200, Images.SquareGreen.Name, null, {
-        bottom: 14, // Amount of pixels for bottom
-        left: 6, // Amount of pixels for left
-        right: 6, // Amount of pixels for right
-        top: 10, // Amount of pixels for top
-      })
+      .ninePatch(
+        0,
+        this.__height,
+        this.__width * 0.2,
+        this.__height * 0.2,
+        Images.SquareGreen.Name,
+        null,
+        {
+          bottom: 14, // Amount of pixels for bottom
+          left: 6, // Amount of pixels for left
+          right: 6, // Amount of pixels for right
+          top: 10, // Amount of pixels for top
+        },
+      )
       .setOrigin(0, 1);
     this.add
       .ninePatch(
         this.__width,
         this.__height,
-        100,
-        200,
+        this.__width * 0.2,
+        this.__height * 0.2,
         Images.SquareGreen.Name,
         null,
         {

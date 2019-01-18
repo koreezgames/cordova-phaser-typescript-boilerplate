@@ -6,8 +6,8 @@ import { isNullOrUndefined } from 'util';
 import { Fonts } from './assets';
 import { Game } from './Game';
 import WebFontLoader from 'webfontloader';
-import { isFat } from './utils';
-import { FAT_REDUCER_RATIO } from './constants';
+import { isFat, isDeviceEmulation, isIPhoneXEmulation } from './utils';
+import { FAT_REDUCER_RATIO, CANVAS_CONTAINER_ID } from './constants';
 
 function getScale(): any {
   const scale: any = {
@@ -16,7 +16,7 @@ function getScale(): any {
     //@ts-ignore
     mode: Phaser.DOM.FIT,
   };
-  if (!window.cordova && __ENV__ !== 'device') {
+  if (!isDeviceEmulation()) {
     scale.width = +process.env.DESIGN_WIDTH;
     scale.height = +process.env.DESIGN_HEIGHT;
     return scale;
@@ -34,7 +34,7 @@ function startGame(): void {
   const gameConfig: GameConfig = {
     type: Phaser.AUTO,
     scale: {
-      parent: 'game-container',
+      parent: CANVAS_CONTAINER_ID,
       ...getScale(),
     },
     scene: [],
@@ -83,6 +83,13 @@ function loadWebFont(callback: () => any): void {
 }
 
 window.onload = () => {
+  if (isIPhoneXEmulation()) {
+    const canvasParent: HTMLElement = document.getElementsByTagName('body')[0];
+    if (canvasParent) {
+      canvasParent.innerHTML =
+        canvasParent.innerHTML + `<div class="frame"></div>`;
+    }
+  }
   loadWebFont(() => {
     startGame();
   });

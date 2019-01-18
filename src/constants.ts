@@ -1,5 +1,13 @@
 export const FAT_THRESHOLD: number = 0.6;
+
 export const FAT_REDUCER_RATIO: number = 0.775;
+
+export const CANVAS_CONTAINER_ID: string = 'canvas';
+
+export const IPHONE_X_SCREEN: {
+  width: number;
+  height: number;
+} = { width: 1125, height: 2436 };
 
 export const DEVICES_WITH_NOTCH: string[] = [
   'iPhone10,3',
