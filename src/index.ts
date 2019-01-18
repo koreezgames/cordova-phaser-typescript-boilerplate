@@ -50,7 +50,7 @@ function startGame(): void {
       scene: [
         {
           key: 'i18nPlugin',
-          mapping: 'i18n',
+          sceneKey: 'i18n',
           plugin: I18nPlugin,
         },
       ],
