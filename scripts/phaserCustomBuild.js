@@ -1,99 +1,107 @@
-require('polyfills');
+require('src/polyfills');
 
-var CONST = require('const');
-var Extend = require('utils/object/Extend');
+var CONST = require('src/const');
+var Extend = require('src/utils/object/Extend');
 
 var Phaser = {
   Cameras: {
-    Scene2D: require('cameras/2d'),
+    Scene2D: require('src/cameras/2d'),
   },
 
-  Events: require('events/EventEmitter'),
+  Events: require('src/events/EventEmitter'),
 
-  Game: require('boot/Game'),
+  Game: require('src/boot/Game'),
 
-  Scene: require('scene/Scene'),
+  Scene: require('src/scene/Scene'),
 
-  Scenes: { ScenePlugin: require('scene/ScenePlugin') },
+  Scenes: { ScenePlugin: require('src/scene/ScenePlugin') },
 
   GameObjects: {
-    DisplayList: require('gameobjects/DisplayList'),
+    DisplayList: require('src/gameobjects/DisplayList'),
 
-    UpdateList: require('gameobjects/UpdateList'),
+    UpdateList: require('src/gameobjects/UpdateList'),
 
-    BuildGameObject: require('gameobjects/BuildGameObject'),
+    BuildGameObject: require('src/gameobjects/BuildGameObject'),
 
-    GameObjectFactory: require('gameobjects/GameObjectFactory'),
+    GameObjectFactory: require('src/gameobjects/GameObjectFactory'),
 
-    Image: require('gameobjects/image/Image'),
+    Image: require('src/gameobjects/image/Image'),
 
-    Sprite: require('gameobjects/sprite/Sprite'),
+    Sprite: require('src/gameobjects/sprite/Sprite'),
 
-    Container: require('gameobjects/container/Container'),
+    Container: require('src/gameobjects/container/Container'),
 
-    RenderTexture: require('gameobjects/rendertexture/RenderTexture'),
+    RenderTexture: require('src/gameobjects/rendertexture/RenderTexture'),
 
-    BitmapText: require('gameobjects/bitmaptext/static/BitmapText'),
+    BitmapText: require('src/gameobjects/bitmaptext/static/BitmapText'),
 
     Factories: {
-      Image: require('gameobjects/image/ImageFactory'),
-      Sprite: require('gameobjects/sprite/SpriteFactory'),
-      Container: require('gameobjects/container/ContainerFactory'),
-      Text: require('gameobjects/text/static/TextFactory'),
-      BitmapText: require('gameobjects/bitmaptext/static/BitmapTextFactory'),
+      Image: require('src/gameobjects/image/ImageFactory'),
+      Sprite: require('src/gameobjects/sprite/SpriteFactory'),
+      Container: require('src/gameobjects/container/ContainerFactory'),
+      Text: require('src/gameobjects/text/static/TextFactory'),
+      BitmapText: require('src/gameobjects/bitmaptext/static/BitmapTextFactory'),
     },
 
     Creators: {
-      Image: require('gameobjects/image/ImageCreator'),
-      Sprite: require('gameobjects/sprite/SpriteCreator'),
-      Container: require('gameobjects/container/ContainerCreator'),
-      Text: require('gameobjects/text/static/TextCreator'),
-      BitmapText: require('gameobjects/bitmaptext/static/BitmapTextCreator'),
+      Image: require('src/gameobjects/image/ImageCreator'),
+      Sprite: require('src/gameobjects/sprite/SpriteCreator'),
+      Container: require('src/gameobjects/container/ContainerCreator'),
+      Text: require('src/gameobjects/text/static/TextCreator'),
+      BitmapText: require('src/gameobjects/bitmaptext/static/BitmapTextCreator'),
     },
   },
 
   Loader: {
     FileTypes: {
-      ImageFile: require('loader/filetypes/ImageFile'),
-      AtlasJSONFile: require('loader/filetypes/AtlasJSONFile'),
-      BitmapFont: require('loader/filetypes/BitmapFontFile'),
-      AudioFile: require('loader/filetypes/AudioFile'),
+      ImageFile: require('src/loader/filetypes/ImageFile'),
+      AtlasJSONFile: require('src/loader/filetypes/AtlasJSONFile'),
+      BitmapFont: require('src/loader/filetypes/BitmapFontFile'),
+      AudioFile: require('src/loader/filetypes/AudioFile'),
     },
 
-    LoaderPlugin: require('loader/LoaderPlugin'),
+    LoaderPlugin: require('src/loader/LoaderPlugin'),
   },
 
   Math: {},
 
   Plugins: {
-    BasePlugin: require('plugins/BasePlugin'),
-    ScenePlugin: require('plugins/ScenePlugin'),
+    BasePlugin: require('src/plugins/BasePlugin'),
+    ScenePlugin: require('src/plugins/ScenePlugin'),
   },
 
-  Tweens: { TweenManager: require('tweens/TweenManager') },
+  Tweens: { TweenManager: require('src/tweens/TweenManager') },
 
   Input: {
-    InputPlugin: require('input/InputPlugin'),
+    InputPlugin: require('src/input/InputPlugin'),
   },
 
-  Clock: { TimerEvent: require('time/Clock') },
+  Clock: { TimerEvent: require('src/time/Clock') },
 
   Utils: {
-    String: { UUID: require('utils/string/UUID') },
-    Array: { GetRandom: require('utils/array/GetRandom') },
-    Objects: { GetAdvancedValue: require('utils/object/GetAdvancedValue') },
-  }
+    String: { UUID: require('src/utils/string/UUID') },
+    Array: { GetRandom: require('src/utils/array/GetRandom') },
+    Objects: { GetAdvancedValue: require('src/utils/object/GetAdvancedValue') },
+  },
 };
 
 if (typeof PLUGIN_CAMERA3D) {
-  Phaser.Cameras.Sprite3D = require('../plugins/camera3d/src');
-  Phaser.GameObjects.Sprite3D = require('../plugins/camera3d/src/sprite3d/Sprite3D');
-  Phaser.GameObjects.Factories.Sprite3D = require('../plugins/camera3d/src/sprite3d/Sprite3DFactory');
-  Phaser.GameObjects.Creators.Sprite3D = require('../plugins/camera3d/src/sprite3d/Sprite3DCreator');
+  Phaser.Cameras.Sprite3D = require('plugins/camera3d/src');
+  Phaser.GameObjects.Sprite3D = require('plugins/camera3d/src/sprite3d/Sprite3D');
+  Phaser.GameObjects.Factories.Sprite3D = require('plugins/camera3d/src/sprite3d/Sprite3DFactory');
+  Phaser.GameObjects.Creators.Sprite3D = require('plugins/camera3d/src/sprite3d/Sprite3DCreator');
 }
 
 if (typeof PLUGIN_FBINSTANT) {
-  Phaser.FacebookInstantGamesPlugin = require('../plugins/fbinstant/src/FacebookInstantGamesPlugin');
+  Phaser.FacebookInstantGamesPlugin = require('plugins/fbinstant/src/FacebookInstantGamesPlugin');
+}
+
+if (typeof PLUGIN_SPINE_WEBGL) {
+  Phaser.SpineWebGLPlugin = require('plugins/spine/src/SpineWebGLPlugin');
+}
+
+if (typeof PLUGIN_SPINE_CANVAS) {
+  Phaser.SpineCanvasPlugin = require('plugins/spine/src/SpineCanvasPlugin');
 }
 
 //  Merge in the consts
