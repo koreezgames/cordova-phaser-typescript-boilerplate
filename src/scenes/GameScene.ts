@@ -1,7 +1,6 @@
 import { NinePatch } from '@koreez/phaser3-ninepatch';
 import { canvasHeight, canvasWidth } from '..';
 import { Atlases, Images } from '../assets';
-import { $x } from '../utils';
 import { AbstractScene } from './AbstractScene';
 
 export class GameScene extends AbstractScene {
@@ -24,8 +23,8 @@ export class GameScene extends AbstractScene {
     this.__ninePatch = this.add.ninePatch(
       canvasWidth * 0.5,
       canvasHeight * 0.5,
-      $x(300),
-      $x(300),
+      300,
+      300,
       Images.SquareGreen.Name,
       null,
       {
@@ -45,6 +44,6 @@ export class GameScene extends AbstractScene {
 
   public redraw(width: number, height: number, direction: number): void {
     this.__direction = direction;
-    this.__ninePatch.resize($x(width), $x(height));
+    this.__ninePatch.resize(width, height);
   }
 }

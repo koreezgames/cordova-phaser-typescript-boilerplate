@@ -63,8 +63,3 @@ export function loadAudio(scene: Phaser.Scene, node: any): void {
     ['Mp3URL', 'OggURL'],
   );
 }
-
-export enum ScalingVariant {
-  HD = 'hd',
-  SD = 'sd',
-}

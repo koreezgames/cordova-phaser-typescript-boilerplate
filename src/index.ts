@@ -3,23 +3,16 @@ import './phaser';
 import { NinePatchPlugin } from '@koreez/phaser3-ninepatch';
 import { I18nPlugin } from '@koreez/phaser3-i18n';
 import { isNullOrUndefined } from 'util';
-import { ScalingVariant } from './assetLoader';
 import { Fonts } from './assets';
 import { Game } from './Game';
 import WebFontLoader from 'webfontloader';
 
 export let canvasWidth: number;
 export let canvasHeight: number;
-export let scaling: ScalingVariant = ScalingVariant.HD;
 
 function setUpDimension(): void {
   let designWidth: number = +process.env.DESIGN_WIDTH;
   let designHeight: number = +process.env.DESIGN_HEIGHT;
-  // if (isSlowDevice()) {
-  //   designWidth /= 2;
-  //   designHeight /= 2;
-  //   SCALING_VARIANT = ScalingVariant.SD;
-  // }
   if (!window.cordova && __ENV__ !== 'device') {
     canvasWidth = designWidth;
     canvasHeight = designHeight;

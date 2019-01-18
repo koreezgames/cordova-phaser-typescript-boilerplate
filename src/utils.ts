@@ -1,6 +1,4 @@
 import { isNullOrUndefined } from 'util';
-import { canvasHeight, canvasWidth, scaling } from '.';
-import { ScalingVariant } from './assetLoader';
 
 const DEVICES_WITH_NOTCH: string[] = [
   'iPhone10,3',
@@ -62,10 +60,6 @@ export function getCircularReplacer(): any {
   };
 }
 
-export function $scaleVariant(value: number): number {
-  return scaling === ScalingVariant.SD ? value / 2 : value;
-}
-
 export function hasNotch(): boolean {
   if (isNullOrUndefined(window.device)) {
     return false;
@@ -78,14 +72,6 @@ export function isSlowDevice(): boolean {
     return false;
   }
   return SLOW_DEVICES.indexOf(window.device.model) !== -1;
-}
-
-export function $x(x: number): number {
-  return x * (canvasWidth / +process.env.DESIGN_WIDTH);
-}
-
-export function $y(y: number): number {
-  return y * (canvasHeight / +process.env.DESIGN_HEIGHT);
 }
 
 export function getEnumKeys(e: any): any[] {
