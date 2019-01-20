@@ -11,7 +11,6 @@ import {
   isDeviceEmulation,
   isIPhoneXEmulation,
   isOnDevice,
-  isIPhoneXScreenSize,
 } from './utils';
 import { FAT_REDUCER_RATIO, CANVAS_CONTAINER_ID } from './constants';
 
@@ -38,7 +37,7 @@ function getScale(): any {
 
 function startGame(): void {
   const gameConfig: GameConfig = {
-    type: Phaser.AUTO,
+    type: Phaser.WEBGL,
     scale: {
       parent: CANVAS_CONTAINER_ID,
       ...getScale(),
@@ -90,10 +89,9 @@ function loadWebFont(callback: () => any): void {
 
 window.onload = () => {
   if (isIPhoneXEmulation()) {
-    const canvasParent: HTMLElement = document.getElementsByTagName('body')[0];
-    if (canvasParent) {
-      canvasParent.innerHTML =
-        canvasParent.innerHTML + `<div class="frame"></div>`;
+    const body: HTMLElement = document.getElementsByTagName('body')[0];
+    if (body) {
+      body.innerHTML = body.innerHTML + `<div class="frame"></div>`;
     }
   }
   loadWebFont(() => {
