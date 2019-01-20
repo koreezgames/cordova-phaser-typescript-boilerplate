@@ -120,10 +120,7 @@ const handleAtlasesTree = node => {
         shell
           .ShellString(`\nexport namespace  ${toPascalCase(name)} {`)
           .toEnd(assetsClassFile);
-        shell
-          .ShellString('\nexport class ' + toPascalCase('atlas') + ' {')
-          .toEnd(assetsClassFile);
-
+        shell.ShellString('\nexport class Atlas {').toEnd(assetsClassFile);
         shell
           .ShellString(`\npublic static readonly Name: string =  '${name}'`)
           .toEnd(assetsClassFile);
@@ -237,6 +234,101 @@ const handleFontsTree = node => {
   }
 };
 
+const handleSpineTree = node => {
+  if (node.type === 'directory') {
+    if (node.children.length === 0) {
+      console.warn(
+        '\x1b[33m%s\x1b[0m',
+        `Warning!!!\nEmpty directory ${node.path}`,
+      );
+    } else {
+      shell
+        .ShellString(`\nexport namespace  ${toPascalCase(node.name)} {`)
+        .toEnd(assetsClassFile);
+      node.children.forEach(childNode => handleSpineTree(childNode));
+      shell.ShellString(`\n}`).toEnd(assetsClassFile);
+    }
+  } else {
+    if (node.extension === '.json') {
+      try {
+        const fileData = fs.readFileSync(node.path, 'ascii');
+        const json = JSON.parse(fileData);
+
+        let name = node.name.substring(0, node.name.indexOf('.'));
+        let path = node.path;
+        if (name.endsWith('-sd')) {
+          return;
+        } else if (name.endsWith('-hd')) {
+          name = name.replace('-hd', '');
+          path = path.replace('-hd', '');
+        }
+        shell
+          .ShellString(`\nexport namespace  ${toPascalCase(name)} {`)
+          .toEnd(assetsClassFile);
+        shell.ShellString('\nexport class Spine {').toEnd(assetsClassFile);
+        shell
+          .ShellString(`\npublic static Name: string =  '${name}'`)
+          .toEnd(assetsClassFile);
+        shell
+          .ShellString(`\npublic static SkeletonURL: string =  '${path}'`)
+          .toEnd(assetsClassFile);
+        shell
+          .ShellString(
+            `\npublic static AtlasURL: string =  '${path.replace(
+              'json',
+              'atlas',
+            )}'`,
+          )
+          .toEnd(assetsClassFile);
+        shell.ShellString(`\n}`).toEnd(assetsClassFile);
+
+        shell.ShellString(`\nexport namespace  Spine {`).toEnd(assetsClassFile);
+        shell.ShellString(`\nexport enum Animations {`).toEnd(assetsClassFile);
+        for (let animation in json['animations']) {
+          shell
+            .ShellString(`\n ${toPascalCase(animation)} = '${animation}',`)
+            .toEnd(assetsClassFile);
+        }
+        shell.ShellString(`\n}`).toEnd(assetsClassFile);
+
+        shell.ShellString(`\nexport enum Skins {`).toEnd(assetsClassFile);
+        for (let skin in json['skins']) {
+          shell
+            .ShellString(`\n ${toPascalCase(skin)} = '${skin}',`)
+            .toEnd(assetsClassFile);
+        }
+        shell.ShellString(`\n}`).toEnd(assetsClassFile);
+
+        shell.ShellString(`\nexport enum Skeleton {`).toEnd(assetsClassFile);
+        shell
+          .ShellString(`\nWidth =  ${json['skeleton']['width']},`)
+          .toEnd(assetsClassFile);
+        shell
+          .ShellString(`\Height =  ${json['skeleton']['height']},`)
+          .toEnd(assetsClassFile);
+        shell.ShellString(`\n}`).toEnd(assetsClassFile);
+
+        shell.ShellString(`\n}`).toEnd(assetsClassFile);
+        shell.ShellString(`\n}`).toEnd(assetsClassFile);
+      } catch (e) {
+        console.error('\x1b[31m%s\x1b[0m', `Skeleton Data File Error: ${e}`);
+      }
+    }
+  }
+};
+
+const handleTranslationKeys = fileData => {
+  const translation = JSON.parse(fileData);
+
+  shell.ShellString(`\nexport enum Translations {`).toEnd(assetsClassFile);
+  for (let key in translation) {
+    shell
+      .ShellString(`\n ${toPascalCase(key)} = '${key}',`)
+      .toEnd(assetsClassFile);
+  }
+  shell.ShellString(`\n}`).toEnd(assetsClassFile);
+};
+
 const loopTree = node => {
   if (node.children !== void 0) {
     if (node.name.toLowerCase() === 'atlases') {
@@ -245,6 +337,8 @@ const loopTree = node => {
       handleAssetTree(node, 'xml', 'png');
     } else if (node.name.toLowerCase() === 'audios') {
       handleAssetTree(node, 'mp3', 'ogg');
+    } else if (node.name.toLowerCase() === 'spines') {
+      handleSpineTree(node);
     } else if (node.name.toLowerCase() === 'fonts') {
       handleFontsTree(node);
     } else {
@@ -284,5 +378,9 @@ shell
   .ShellString('\n// tslint:disable:naming-convention\n\n')
   .toEnd(assetsClassFile);
 tree.children.forEach(child => loopTree(child));
+
+handleTranslationKeys(
+  fs.readFileSync('assets/locales/en/translation.json', 'ascii'),
+);
 
 shell.exec(' tslint --fix src/assets.ts');
