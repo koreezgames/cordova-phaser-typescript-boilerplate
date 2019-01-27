@@ -74,7 +74,6 @@
     "cordova-plugin-cocoapod-support": "^1.6.0",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-fullscreen": "^1.2.0",
-    "cordova-plugin-ionic-webview": "^2.3.2",
     "cordova-plugin-multidex": "^0.1.4",
     "cordova-plugin-splashscreen": "^5.0.2",
     "cordova-plugin-statusbar": "^2.4.2",
@@ -91,9 +90,6 @@
       "cordova-plugin-statusbar": {},
       "cordova-custom-config": {},
       "cordova-plugin-fullscreen": {},
-      "cordova-plugin-ionic-webview": {
-        "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
-      },
       "cordova-plugin-device": {}
     }
   }
