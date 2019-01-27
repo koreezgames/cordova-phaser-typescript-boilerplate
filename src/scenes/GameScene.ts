@@ -1,5 +1,5 @@
 import { NinePatch } from '@koreez/phaser3-ninepatch';
-import { Atlases, Images, Spines } from '../assets';
+import { Atlases, Bitmapfonts, Fonts, Images, Spines } from '../assets';
 import { AbstractScene } from './AbstractScene';
 
 export class GameScene extends AbstractScene {
@@ -118,6 +118,22 @@ export class GameScene extends AbstractScene {
         true,
       )
       .setScale(0.14);
+    this.add
+      .text(this.__width * 0.41, this.__height * 0.3, 'text', {
+        fontFamily: Fonts.K8x12.Font.Family,
+        fontSize: this.__width * 0.2,
+        color: '#ff0000',
+      })
+      .setShadow(2, 2, '#333333', 2, false, true);
+    this.add
+      .bitmapText(
+        this.__width * 0.5,
+        this.__height * 0.1,
+        Bitmapfonts.HelveticaBold.Name,
+        'Bitmap Text',
+        this.__width * 0.1,
+      )
+      .setOrigin(0.5);
     super.create();
   }
 

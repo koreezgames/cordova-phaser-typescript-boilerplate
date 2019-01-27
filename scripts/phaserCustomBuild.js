@@ -37,12 +37,15 @@ var Phaser = {
 
     BitmapText: require('src/gameobjects/bitmaptext/static/BitmapText'),
 
+    DynamicBitmapText: require('src/gameobjects/bitmaptext/dynamic/DynamicBitmapText'),
+
     Factories: {
       Image: require('src/gameobjects/image/ImageFactory'),
       Sprite: require('src/gameobjects/sprite/SpriteFactory'),
       Container: require('src/gameobjects/container/ContainerFactory'),
       Text: require('src/gameobjects/text/static/TextFactory'),
       BitmapText: require('src/gameobjects/bitmaptext/static/BitmapTextFactory'),
+      DynamicBitmapText: require('src/gameobjects/bitmaptext/dynamic/DynamicBitmapTextFactory'),
     },
 
     Creators: {
@@ -51,6 +54,7 @@ var Phaser = {
       Container: require('src/gameobjects/container/ContainerCreator'),
       Text: require('src/gameobjects/text/static/TextCreator'),
       BitmapText: require('src/gameobjects/bitmaptext/static/BitmapTextCreator'),
+      DynamicBitmapText: require('src/gameobjects/bitmaptext/dynamic/DynamicBitmapTextCreator'),
     },
   },
 
