@@ -56,6 +56,13 @@ function startGame(): void {
           mapping: 'i18n',
           plugin: I18nPlugin,
         },
+        {
+          key: 'SpineWebGLPlugin',
+          //@ts-ignore
+          mapping: 'spine',
+          //@ts-ignore
+          plugin: Phaser.SpineWebGLPlugin,
+        },
       ],
     },
   };

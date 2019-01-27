@@ -10,7 +10,7 @@ var Phaser = {
 
   Events: require('src/events/EventEmitter'),
 
-  Game: require('src/boot/Game'),
+  Game: require('src/core/Game'),
 
   Scene: require('src/scene/Scene'),
 

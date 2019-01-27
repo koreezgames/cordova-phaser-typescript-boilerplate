@@ -1,10 +1,11 @@
 import {
   loadAtlases,
-  loadAudio,
+  loadAudios,
   loadBitmapfonts,
   loadImages,
+  loadSpines,
 } from '../assetLoader';
-import { Atlases, Audios, Bitmapfonts, Images } from '../assets';
+import { Atlases, Audios, Bitmapfonts, Images, Spines } from '../assets';
 import { SceneKey } from '../constants/SceneKey';
 import { AbstractScene } from './AbstractScene';
 
@@ -21,9 +22,10 @@ export class PreloadScene extends AbstractScene {
       },
     );
     loadAtlases(this, Atlases);
-    loadAudio(this, Audios);
+    loadAudios(this, Audios);
     loadBitmapfonts(this, Bitmapfonts);
     loadImages(this, Images);
+    loadSpines(this, Spines);
   }
 
   public create(): void {

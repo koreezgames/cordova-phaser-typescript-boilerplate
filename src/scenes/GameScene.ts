@@ -1,5 +1,5 @@
 import { NinePatch } from '@koreez/phaser3-ninepatch';
-import { Atlases, Images } from '../assets';
+import { Atlases, Images, Spines } from '../assets';
 import { AbstractScene } from './AbstractScene';
 
 export class GameScene extends AbstractScene {
@@ -107,6 +107,17 @@ export class GameScene extends AbstractScene {
         },
       )
       .setOrigin(1, 1);
+    //@ts-ignore
+    this.add
+      //@ts-ignore
+      .spine(
+        this.__width * 0.425,
+        this.__height * 0.6,
+        Spines.Builder.Spine.Name,
+        Spines.Builder.Spine.Animations.Walking,
+        true,
+      )
+      .setScale(0.14);
     super.create();
   }
 

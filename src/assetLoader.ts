@@ -44,7 +44,7 @@ export function loadAtlases(scene: Phaser.Scene, node: any): void {
   ]);
 }
 
-export function loadJson(scene: Phaser.Scene, node: any): void {
+export function loadJsons(scene: Phaser.Scene, node: any): void {
   loadAssets(
     scene,
     'json',
@@ -54,12 +54,23 @@ export function loadJson(scene: Phaser.Scene, node: any): void {
   );
 }
 
-export function loadAudio(scene: Phaser.Scene, node: any): void {
+export function loadAudios(scene: Phaser.Scene, node: any): void {
   loadAssets(
     scene,
     'audio',
     scene.cache.audio.exists.bind(scene.cache.audio),
     node,
     ['Mp3URL', 'OggURL'],
+  );
+}
+
+export function loadSpines(scene: Phaser.Scene, node: any): void {
+  loadAssets(
+    scene,
+    'spine',
+    // @ts-ignore
+    scene.spine.cache.exists.bind(scene.spine.cache),
+    node,
+    ['SkeletonURL', 'AtlasURL'],
   );
 }

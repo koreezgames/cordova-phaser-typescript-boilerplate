@@ -1,0 +1,62 @@
+
+assets/spines/builder.png
+size: 192,147
+format: RGBA4444
+filter: Linear,Linear
+repeat: none
+Group 11
+  rotate: true
+  xy: 2, 60
+  size: 85, 154
+  orig: 85, 154
+  offset: 0, 0
+  index: -1
+Layer 194
+  rotate: true
+  xy: 104, 25
+  size: 33, 42
+  orig: 33, 42
+  offset: 0, 0
+  index: -1
+Layer 195
+  rotate: true
+  xy: 148, 22
+  size: 34, 40
+  orig: 34, 40
+  offset: 0, 0
+  index: -1
+Layer 197
+  rotate: true
+  xy: 104, 3
+  size: 20, 25
+  orig: 20, 25
+  offset: 0, 0
+  index: -1
+Layer 199
+  rotate: false
+  xy: 158, 58
+  size: 32, 39
+  orig: 32, 39
+  offset: 0, 0
+  index: -1
+Layer 201
+  rotate: false
+  xy: 158, 99
+  size: 31, 46
+  orig: 31, 46
+  offset: 0, 0
+  index: -1
+Layer 201 copy
+  rotate: true
+  xy: 65, 2
+  size: 56, 37
+  orig: 56, 37
+  offset: 0, 0
+  index: -1
+Layer 202
+  rotate: false
+  xy: 2, 16
+  size: 61, 42
+  orig: 61, 42
+  offset: 0, 0
+  index: -1
