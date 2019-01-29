@@ -4,7 +4,7 @@
 			"image": "main.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 609,
+				"w": 873,
 				"h": 962
 			},
 			"scale": 1,
@@ -35,6 +35,31 @@
 					}
 				},
 				{
+					"filename": "helvetica_bold",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 330,
+						"h": 523
+					},
+					"spriteSourceSize": {
+						"x": 1,
+						"y": 1,
+						"w": 328,
+						"h": 496
+					},
+					"frame": {
+						"x": 544,
+						"y": 1,
+						"w": 328,
+						"h": 496
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
 					"filename": "mushroom",
 					"rotated": false,
 					"trimmed": false,
@@ -50,9 +75,59 @@
 					},
 					"frame": {
 						"x": 544,
-						"y": 1,
+						"y": 500,
 						"w": 64,
 						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "card",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 32
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 32
+					},
+					"frame": {
+						"x": 544,
+						"y": 567,
+						"w": 32,
+						"h": 32
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "spider",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 32
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 32
+					},
+					"frame": {
+						"x": 579,
+						"y": 567,
+						"w": 32,
+						"h": 32
 					},
 					"anchor": {
 						"x": 0.5,
@@ -65,6 +140,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:3657caf72af08dc851ec60797ed24595:dc9c7adfd4bd959fa4dcd4fbbe834957:03f91ab73e0f4667800419161e658c40$"
+		"smartupdate": "$TexturePacker:SmartUpdate:d24ad4f237d813a890b83c0bf875de0b:420ad12123b3635e70f15fe46fdd49e4:03f91ab73e0f4667800419161e658c40$"
 	}
 }

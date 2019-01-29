@@ -74,3 +74,9 @@ export function loadSpines(scene: Phaser.Scene, node: any): void {
     ['SkeletonURL', 'AtlasURL'],
   );
 }
+
+export function loadXMLs(scene: Phaser.Scene, node: any): void {
+  loadAssets(scene, 'xml', scene.cache.xml.exists.bind(scene.cache.xml), node, [
+    'FileURL',
+  ]);
+}
