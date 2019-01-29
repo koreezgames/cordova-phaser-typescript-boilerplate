@@ -10,8 +10,8 @@ export abstract class AbstractScene extends Phaser.Scene {
   public i18n: Ii18nAdapter;
 
   public onCreationCompleteCb: () => void;
-  private static readonly __consoleArgs: string[] = [
-    ``,
+  private static readonly _consoleArgs: string[] = [
+    '',
     `background: ${'#295A34'}`,
     `background: ${'#2FAA4A'}`,
     `color: ${'#102415'}; background: ${'#27D04C'};`,
@@ -20,28 +20,28 @@ export abstract class AbstractScene extends Phaser.Scene {
   ];
 
   public init(): void {
-    AbstractScene.__consoleArgs[0] = `%c %c %c ${
+    AbstractScene._consoleArgs[0] = `%c %c %c ${
       this.sys.settings.key
     }: init %c %c `;
-    console.log.apply(console, AbstractScene.__consoleArgs);
+    console.log.apply(console, AbstractScene._consoleArgs);
   }
 
   public create(): void {
-    AbstractScene.__consoleArgs[0] = `%c %c %c ${
+    AbstractScene._consoleArgs[0] = `%c %c %c ${
       this.sys.settings.key
     }: create %c %c `;
-    console.log.apply(console, AbstractScene.__consoleArgs);
-    this.__handleCreationComplete();
+    console.log.apply(console, AbstractScene._consoleArgs);
+    this._handleCreationComplete();
   }
 
   public shutdown(): void {
-    AbstractScene.__consoleArgs[0] = `%c %c %c ${
+    AbstractScene._consoleArgs[0] = `%c %c %c ${
       this.sys.settings.key
     }: shutdown %c %c `;
-    console.log.apply(console, AbstractScene.__consoleArgs);
+    console.log.apply(console, AbstractScene._consoleArgs);
   }
 
-  private __handleCreationComplete(): void {
+  private _handleCreationComplete(): void {
     if (this.onCreationCompleteCb) {
       this.onCreationCompleteCb();
     } else {

@@ -8,7 +8,7 @@ import {
 } from 'mobx';
 
 export class MediatorsUtil {
-  private static __disposeReaction<TD>(
+  private static _disposeReaction<TD>(
     map: Map<(...args: any[]) => void, IReactionDisposer>,
     effect: (arg: TD, r: IReactionPublic) => void,
   ): void {
@@ -23,12 +23,12 @@ export class MediatorsUtil {
   protected _whenMap: Map<(...args: any[]) => void, IReactionDisposer>;
 
   constructor(context: object) {
-    this.__mediatorContext = context;
+    this._mediatorContext = context;
     this._reactionMap = new Map();
     this.initialize();
   }
   private static readonly __consoleArgs: string[] = [
-    ``,
+    '',
     `background: ${'#2A3351'}`,
     `background: ${'#364D98'}`,
     `color: ${'#F4F6FE'}; background: ${'#3656C1'};`,
@@ -36,11 +36,11 @@ export class MediatorsUtil {
     `background: ${'#2A3351'}`,
   ];
 
-  private __mediatorContext: object;
+  private _mediatorContext: object;
 
   public initialize(): void {
     MediatorsUtil.__consoleArgs[0] = `%c %c %c ${
-      this.__mediatorContext.constructor.name
+      this._mediatorContext.constructor.name
     }: initialize %c %c `;
     console.log.apply(console, MediatorsUtil.__consoleArgs);
   }
@@ -52,7 +52,7 @@ export class MediatorsUtil {
     this._reactionMap.clear();
     this._reactionMap = null;
     MediatorsUtil.__consoleArgs[0] = `%c %c %c ${
-      this.__mediatorContext.constructor.name
+      this._mediatorContext.constructor.name
     }: destroy %c %c `;
     console.log.apply(console, MediatorsUtil.__consoleArgs);
   }
@@ -64,7 +64,7 @@ export class MediatorsUtil {
   ): this {
     this._reactionMap.set(
       effect,
-      reaction(expression, effect.bind(this.__mediatorContext), opts),
+      reaction(expression, effect.bind(this._mediatorContext), opts),
     );
     return this;
   }
@@ -86,7 +86,7 @@ export class MediatorsUtil {
           effect,
           reaction(
             expression,
-            effect.bind(this.__mediatorContext),
+            effect.bind(this._mediatorContext),
             reactionOptions,
           ),
         );
@@ -100,8 +100,8 @@ export class MediatorsUtil {
   public removeReaction<TD>(
     effect: (arg: TD, r: IReactionPublic) => void,
   ): this {
-    MediatorsUtil.__disposeReaction(this._reactionMap, effect);
-    MediatorsUtil.__disposeReaction(this._whenMap, effect);
+    MediatorsUtil._disposeReaction(this._reactionMap, effect);
+    MediatorsUtil._disposeReaction(this._whenMap, effect);
     return this;
   }
 }

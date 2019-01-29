@@ -5,7 +5,7 @@ import { getCircularReplacer } from '../utils';
 @injectable()
 export abstract class AbstractSignal extends Signal {
   private static readonly __dispatchConsoleArgs: string[] = [
-    ``,
+    '',
     `background: ${'#757130'}`,
     `background: ${'#DED434'}`,
     `color: ${'#2F2E15'}; background: ${'#FFF325'};`,

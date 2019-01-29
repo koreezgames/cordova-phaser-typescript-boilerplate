@@ -3,37 +3,37 @@ import { Atlases, Bitmapfonts, Fonts, Images, Spines } from '../assets';
 import { AbstractScene } from './AbstractScene';
 
 export class GameScene extends AbstractScene {
-  private __ninePatch: NinePatch;
-  private __direction: number = 1;
+  private _ninePatch: NinePatch;
+  private _direction: number = 1;
 
-  private __width: number;
-  private __height: number;
+  private _width: number;
+  private _height: number;
 
   public init(): void {
-    //@ts-ignore
-    this.__width = this.scale.width;
-    //@ts-ignore
-    this.__height = this.scale.height;
+    // @ts-ignore
+    this._width = this.scale.width;
+    // @ts-ignore
+    this._height = this.scale.height;
   }
 
   public create(): void {
     this.add
       .image(
-        this.__width * 0.5,
-        this.__height * 0.5,
+        this._width * 0.5,
+        this._height * 0.5,
         Atlases.Main.Atlas.Name,
         Atlases.Main.Atlas.Frames.Bg,
       )
       .setScale(
-        this.__width / Atlases.Main.Atlas.FrameSourceSizes.Bg.w,
-        this.__height / Atlases.Main.Atlas.FrameSourceSizes.Bg.h,
+        this._width / Atlases.Main.Atlas.FrameSourceSizes.Bg.w,
+        this._height / Atlases.Main.Atlas.FrameSourceSizes.Bg.h,
       );
 
-    this.__ninePatch = this.add.ninePatch(
-      this.__width * 0.5,
-      this.__height * 0.5,
-      this.__width * 0.2,
-      this.__height * 0.2,
+    this._ninePatch = this.add.ninePatch(
+      this._width * 0.5,
+      this._height * 0.5,
+      this._width * 0.2,
+      this._height * 0.2,
       Images.SquareGreen.Name,
       null,
       {
@@ -47,8 +47,8 @@ export class GameScene extends AbstractScene {
       .ninePatch(
         0,
         0,
-        this.__width * 0.2,
-        this.__height * 0.2,
+        this._width * 0.2,
+        this._height * 0.2,
         Images.SquareGreen.Name,
         null,
         {
@@ -61,10 +61,10 @@ export class GameScene extends AbstractScene {
       .setOrigin(0, 0);
     this.add
       .ninePatch(
-        this.__width,
+        this._width,
         0,
-        this.__width * 0.2,
-        this.__height * 0.2,
+        this._width * 0.2,
+        this._height * 0.2,
         Images.SquareGreen.Name,
         null,
         {
@@ -78,9 +78,9 @@ export class GameScene extends AbstractScene {
     this.add
       .ninePatch(
         0,
-        this.__height,
-        this.__width * 0.2,
-        this.__height * 0.2,
+        this._height,
+        this._width * 0.2,
+        this._height * 0.2,
         Images.SquareGreen.Name,
         null,
         {
@@ -93,10 +93,10 @@ export class GameScene extends AbstractScene {
       .setOrigin(0, 1);
     this.add
       .ninePatch(
-        this.__width,
-        this.__height,
-        this.__width * 0.2,
-        this.__height * 0.2,
+        this._width,
+        this._height,
+        this._width * 0.2,
+        this._height * 0.2,
         Images.SquareGreen.Name,
         null,
         {
@@ -107,42 +107,42 @@ export class GameScene extends AbstractScene {
         },
       )
       .setOrigin(1, 1);
-    //@ts-ignore
+    // @ts-ignore
     this.add
-      //@ts-ignore
+      // @ts-ignore
       .spine(
-        this.__width * 0.425,
-        this.__height * 0.6,
+        this._width * 0.425,
+        this._height * 0.6,
         Spines.Builder.Spine.Name,
         Spines.Builder.Spine.Animations.Walking,
         true,
       )
       .setScale(0.14);
     this.add
-      .text(this.__width * 0.41, this.__height * 0.3, 'text', {
+      .text(this._width * 0.41, this._height * 0.3, 'text', {
         fontFamily: Fonts.K8x12.Font.Family,
-        fontSize: this.__width * 0.2,
+        fontSize: this._width * 0.2,
         color: '#ff0000',
       })
       .setShadow(2, 2, '#333333', 2, false, true);
     this.add
       .bitmapText(
-        this.__width * 0.5,
-        this.__height * 0.1,
+        this._width * 0.5,
+        this._height * 0.1,
         Bitmapfonts.HelveticaBold.Name,
         'Bitmap Text',
-        this.__width * 0.1,
+        this._width * 0.1,
       )
       .setOrigin(0.5);
     super.create();
   }
 
   public update(): void {
-    this.__ninePatch.angle += this.__direction;
+    this._ninePatch.angle += this._direction;
   }
 
   public redraw(width: number, height: number, direction: number): void {
-    this.__direction = direction;
-    this.__ninePatch.resize(width, height);
+    this._direction = direction;
+    this._ninePatch.resize(width, height);
   }
 }

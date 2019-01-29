@@ -28,10 +28,10 @@ export class GameStartupSubCommand extends AbstractAsyncCommand {
 
   public execute(): void {
     super.execute();
-    setTimeout(this._onTimeout.bind(this), this._delay);
+    setTimeout(this.onTimeout.bind(this), this._delay);
   }
 
-  protected _onTimeout(): void {
+  protected onTimeout(): void {
     this.dispatchComplete(true);
   }
 }

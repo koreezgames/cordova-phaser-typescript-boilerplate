@@ -19,7 +19,7 @@ export abstract class AbstractViewMediator<
     this._baseMediatorsUtil = null;
   }
 
-  protected _addReaction<TD>(
+  protected addReaction<TD>(
     expression: (r: IReactionPublic) => TD,
     effect: (arg: TD, r: IReactionPublic) => void,
     opts?: IReactionOptions,
@@ -28,7 +28,7 @@ export abstract class AbstractViewMediator<
     return this;
   }
 
-  protected _removeReaction<TD>(
+  protected removeReaction<TD>(
     effect: (arg: TD, r: IReactionPublic) => void,
   ): this {
     this._baseMediatorsUtil.removeReaction(effect);
