@@ -26,6 +26,14 @@ export class PreloadScene extends AbstractScene {
     loadBitmapfonts(this, Bitmapfonts);
     loadImages(this, Images);
     loadSpines(this, Spines);
+
+    this.load.atlas(
+      'testAtlas',
+      'assets/atlases/test.png',
+      'assets/atlases/test.json',
+    );
+
+    this.load.xml('testXML', 'assets/bitmapfonts/helvetica_bold.xml');
   }
 
   public create(): void {

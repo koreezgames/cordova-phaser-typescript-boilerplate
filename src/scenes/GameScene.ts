@@ -17,6 +17,7 @@ export class GameScene extends AbstractScene {
   }
 
   public create(): void {
+    this.__test();
     this.add
       .image(
         this.__width * 0.5,
@@ -144,5 +145,116 @@ export class GameScene extends AbstractScene {
   public redraw(width: number, height: number, direction: number): void {
     this.__direction = direction;
     this.__ninePatch.resize(width, height);
+  }
+
+  private __test(): void {
+    // @ts-ignore
+    Phaser.GameObjects.BitmapText.ParseFromAtlas(
+      this,
+      'Font',
+      'testAtlas',
+      'helvetica_bold.png',
+      'testXML',
+    );
+
+    Helper.FontUtils.addSpriteIntoFont(
+      this.sys.game,
+      'Font',
+      'aaa1973429524.png',
+      0xbc,
+    );
+
+    Helper.FontUtils.addSpriteIntoFont(
+      this.sys.game,
+      'Font',
+      'iconimg284793.png',
+      0xbd,
+      '0',
+      Helper.FontUtils.ALIGN_BOTTOM,
+      1,
+    );
+
+    this.add
+      .bitmapText(100, 1700, 'Font', '\u00BD \u00BD There is \u00BC', 120)
+      .setDepth(9999);
+  }
+}
+
+namespace Helper {
+  export class FontUtils {
+    public static readonly ALIGN_TOP: number = 0;
+    public static readonly ALIGN_CENTER: number = 1;
+    public static readonly ALIGN_BOTTOM: number = 2;
+
+    // -------------------------------------------------------------------------
+    /**
+     * Add sprite into bitmap font, position it and assign it character code.
+     * Then you can print it along with other font characters.
+     *
+     * @param {Phaser.Game} game - Phaser game
+     * @param {string} fontName - name of font (the same as used in cache as key)
+     * @param {(string|number)} frame - new sprite character frame
+     * @param {number} newCharCode - char code to assign to sprite character
+     * @param {(number|string)} [referenceChar = "0"] - reference character to position sprite character against
+     * @param {number} [align = FontUtils.ALIGN_CENTER] - align to top, center or bottom of reference character
+     * @param {number} [originY = 0.5] - origin of sprite character on y axis
+     */
+    public static addSpriteIntoFont(
+      game: Phaser.Game,
+      fontName: string,
+      frame: string | number,
+      newCharCode: number,
+      referenceChar: number | string = '0',
+      align: number = FontUtils.ALIGN_CENTER,
+      originY: number = 0.5,
+    ): void {
+      // if reference char is string, convert it to number
+      if (typeof referenceChar === 'string') {
+        referenceChar = referenceChar.charCodeAt(0);
+      }
+
+      // get font characters and reference character
+      let font: any = game.cache.bitmapFont.get(fontName);
+      let fontChars: any = (font.data as BitmapFontData).chars;
+      let refChar: any = fontChars[referenceChar];
+
+      if (refChar == null) {
+        throw new Error(
+          `Reference character ${String.fromCharCode(
+            referenceChar,
+          )} with code ${referenceChar} is mssing in font. Try another.`,
+        );
+      }
+
+      // get frame of new sprite character
+      let f: any = game.textures.getFrame(font['texture'], frame);
+      let fWidth: number = f.customData['sourceSize']['w'];
+      let fHeight: number = f.customData['sourceSize']['h'];
+
+      // calculate y offset of sprite chracter
+      let refY: any =
+        refChar.yOffset +
+        (align === FontUtils.ALIGN_CENTER
+          ? refChar.height / 2
+          : align === FontUtils.ALIGN_BOTTOM
+          ? refChar.height
+          : 0);
+      let yOffset: any = Math.round(refY - fHeight * originY);
+
+      // add new sprite character
+      fontChars[newCharCode] = {
+        x: f.cutX,
+        y: f.cutY,
+        width: f.cutWidth,
+        height: f.cutHeight,
+        centerX: Math.floor(fWidth / 2),
+        centerY: Math.floor(fHeight / 2),
+        xOffset: 0,
+        yOffset: yOffset,
+        xAdvance: fWidth + 2,
+        data: {},
+        kerning: {},
+      };
+    }
   }
 }
