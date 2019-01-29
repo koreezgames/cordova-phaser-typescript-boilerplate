@@ -12,7 +12,7 @@ export abstract class AbstractSceneMediator<
 
   public initialize(): void {
     this._baseMediatorsUtil = new MediatorsUtil(this);
-    this.scene.onCreationCompleteCb = this._sceneCreated.bind(this);
+    this.scene.onCreationCompleteCb = this.sceneCreated.bind(this);
   }
 
   public destroy(): void {
@@ -20,7 +20,7 @@ export abstract class AbstractSceneMediator<
     this._baseMediatorsUtil = null;
   }
 
-  protected _addReaction<TD>(
+  protected addReaction<TD>(
     expression: (r: IReactionPublic) => TD,
     effect: (arg: TD, r: IReactionPublic) => void,
     opts?: IReactionOptions,
@@ -29,14 +29,14 @@ export abstract class AbstractSceneMediator<
     return this;
   }
 
-  protected _removeReaction<TD>(
+  protected removeReaction<TD>(
     effect: (arg: TD, r: IReactionPublic) => void,
   ): this {
     this._baseMediatorsUtil.removeReaction(effect);
     return this;
   }
 
-  protected _sceneCreated(): void {
+  protected sceneCreated(): void {
     // ...
   }
 }

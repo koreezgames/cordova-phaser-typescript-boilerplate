@@ -4,35 +4,35 @@ import { action, computed, observable } from 'mobx';
 @injectable()
 export class GameModel {
   @observable
-  private __rotationDirection: number = 1;
+  private _rotationDirection: number = 1;
   @observable
-  private __width: number = 300;
+  private _width: number = 300;
   @observable
-  private __height: number = 300;
+  private _height: number = 300;
 
   @computed
   public get rotationDirection(): number {
-    return this.__rotationDirection;
+    return this._rotationDirection;
   }
 
   @computed
   public get width(): number {
-    return this.__width;
+    return this._width;
   }
 
   @computed
   public get height(): number {
-    return this.__height;
+    return this._height;
   }
 
   @action
   public changeRotationDirection(): void {
-    this.__rotationDirection = -this.__rotationDirection;
+    this._rotationDirection = -this._rotationDirection;
   }
 
   @action
   public resize(width: number, height: number): void {
-    this.__width = width;
-    this.__height = height;
+    this._width = width;
+    this._height = height;
   }
 }

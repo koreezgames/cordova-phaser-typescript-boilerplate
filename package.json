@@ -48,6 +48,7 @@
     "shelljs": "^0.8.3",
     "ts-loader": "^5.3.3",
     "tslint": "^5.12.1",
+    "tslint-config-airbnb": "^5.11.1",
     "tslint-config-prettier": "^1.17.0",
     "tslint-consistent-codestyle": "^1.15.0",
     "tslint-loader": "^3.5.4",

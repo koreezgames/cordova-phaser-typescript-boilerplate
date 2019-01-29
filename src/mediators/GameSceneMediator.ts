@@ -17,8 +17,8 @@ export class GameSceneMediator extends AbstractSceneMediator<GameScene> {
   }
 
   // override
-  protected _sceneCreated(): void {
-    this._addReaction(
+  protected sceneCreated(): void {
+    this.addReaction(
       () => ({
         width: this.gameModel.width,
         height: this.gameModel.height,
@@ -28,7 +28,7 @@ export class GameSceneMediator extends AbstractSceneMediator<GameScene> {
     );
   }
 
-  protected _update({
+  private _update({
     width,
     height,
     rotationDirection,

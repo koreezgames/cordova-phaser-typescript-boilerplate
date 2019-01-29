@@ -10,23 +10,23 @@ import { PreloadScene } from '../scenes/PreloadScene';
 @injectable()
 export class SceneMediatorConfig implements IConfig {
   @inject(IViewMediatorMap)
-  private __viewMediatorMap: IViewMediatorMap;
+  private _viewMediatorMap: IViewMediatorMap;
 
   @inject(ISceneMediatorMap)
-  private __sceneMediatorMap: ISceneMediatorMap;
+  private _sceneMediatorMap: ISceneMediatorMap;
 
   public configure(): void {
-    this.__mapSceneMediators();
-    this.__mapViewMediators();
+    this._mapSceneMediators();
+    this._mapViewMediators();
   }
 
-  private __mapSceneMediators(): void {
-    this.__sceneMediatorMap.map(BootScene).toMediator(BootSceneMediator);
-    this.__sceneMediatorMap.map(PreloadScene).toMediator(PreloadSceneMediator);
-    this.__sceneMediatorMap.map(GameScene).toMediator(GameSceneMediator);
+  private _mapSceneMediators(): void {
+    this._sceneMediatorMap.map(BootScene).toMediator(BootSceneMediator);
+    this._sceneMediatorMap.map(PreloadScene).toMediator(PreloadSceneMediator);
+    this._sceneMediatorMap.map(GameScene).toMediator(GameSceneMediator);
   }
 
-  private __mapViewMediators(): void {
+  private _mapViewMediators(): void {
     // this.viewMediatorMap.map(SomeView).toMediator(TheMeditorForSomeView)
     return;
   }

@@ -5,7 +5,7 @@ import { I18nPlugin } from '@koreez/phaser3-i18n';
 import { isNullOrUndefined } from 'util';
 import { Fonts } from './assets';
 import { Game } from './Game';
-import WebFontLoader from 'webfontloader';
+import webfontloader from 'webfontloader';
 import {
   isFat,
   isDeviceEmulation,
@@ -16,9 +16,9 @@ import { FAT_REDUCER_RATIO, CANVAS_CONTAINER_ID } from './constants';
 
 function getScale(): any {
   const scale: any = {
-    //@ts-ignore
+    // @ts-ignore
     autoCenter: Phaser.DOM.CENTER_BOTH,
-    //@ts-ignore
+    // @ts-ignore
     mode: Phaser.DOM.FIT,
   };
   if (!isDeviceEmulation() && !isOnDevice()) {
@@ -43,7 +43,7 @@ function startGame(): void {
       ...getScale(),
     },
     scene: [],
-    //@ts-ignore
+    // @ts-ignore
     transparent: true,
     plugins: {
       global: [
@@ -52,15 +52,15 @@ function startGame(): void {
       scene: [
         {
           key: 'i18nPlugin',
-          //@ts-ignore
+          // @ts-ignore
           mapping: 'i18n',
           plugin: I18nPlugin,
         },
         {
           key: 'SpineWebGLPlugin',
-          //@ts-ignore
+          // @ts-ignore
           mapping: 'spine',
-          //@ts-ignore
+          // @ts-ignore
           plugin: Phaser.SpineWebGLPlugin,
         },
       ],
@@ -72,7 +72,7 @@ function startGame(): void {
 
 function loadWebFont(callback: () => any): void {
   if (Object.keys(Fonts).length > 0) {
-    const webFontLoaderOptions: WebFontLoader.Config = {};
+    const webFontLoaderOptions: webfontloader.Config = {};
     webFontLoaderOptions.custom = {
       families: [],
       urls: [],
@@ -82,13 +82,13 @@ function loadWebFont(callback: () => any): void {
       if (!Fonts.hasOwnProperty(font)) {
         continue;
       }
-      //@ts-ignore
+      // @ts-ignore
       const webFont: any = Fonts[font].Font;
       webFontLoaderOptions.custom.families.push(webFont.Family);
       webFontLoaderOptions.custom.urls.push(webFont.CSS);
     }
     webFontLoaderOptions.active = callback;
-    WebFontLoader.load(webFontLoaderOptions);
+    webfontloader.load(webFontLoaderOptions);
   } else {
     callback();
   }
@@ -96,10 +96,9 @@ function loadWebFont(callback: () => any): void {
 
 window.onload = () => {
   if (isIPhoneXEmulation()) {
-    const body: HTMLElement = document.getElementsByTagName('body')[0];
-    if (body) {
-      body.innerHTML = body.innerHTML + `<div class="frame"></div>`;
-    }
+    const frameDiv = document.createElement('div');
+    frameDiv.className = 'frame';
+    document.body.appendChild(frameDiv);
   }
   loadWebFont(() => {
     startGame();

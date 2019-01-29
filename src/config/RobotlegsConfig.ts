@@ -12,20 +12,20 @@ export class RobotlegsConfig implements IConfig {
   public commandMap: ISignalCommandMap;
 
   public configure(): void {
-    this.__mapCommands();
-    this.__mapManager();
-    this.__mapModels();
+    this._mapCommands();
+    this._mapManager();
+    this._mapModels();
   }
 
-  private __mapCommands(): void {
+  private _mapCommands(): void {
     this.commandMap.map(GameStartupSignal).toCommand(GameStartupCommand);
   }
 
-  private __mapManager(): void {
+  private _mapManager(): void {
     return;
   }
 
-  private __mapModels(): void {
+  private _mapModels(): void {
     this.context.injector
       .bind(GameModel)
       .toSelf()

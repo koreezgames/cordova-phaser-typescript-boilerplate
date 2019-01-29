@@ -11,17 +11,17 @@ import { GameScene } from './scenes/GameScene';
 export class Game extends Phaser.Game {
   constructor(gameConfig: any) {
     super(gameConfig);
-    this.__context = new Context();
-    this.__context
+    this._context = new Context();
+    this._context
       .install(MVCSBundle, PhaserBundle, SignalCommandMapExtension)
       .configure(new ContextSceneManager(this.scene))
       .configure(SceneMediatorConfig)
       .configure(RobotlegsConfig)
-      .initialize(this.__robotlegsInitialized);
+      .initialize(this._robotlegsInitialized);
   }
 
-  private static readonly __consoleArgs: string[] = [
-    ``,
+  private static readonly _consoleArgs: string[] = [
+    '',
     `background: ${'#2DFFFE'}`,
     `background: ${'#29FD2F'}`,
     `background: ${'#FFFD38'}`,
@@ -29,15 +29,15 @@ export class Game extends Phaser.Game {
     `color: ${'#000000'}; background: ${'#ffffff'};`,
   ];
 
-  private __context: Context;
+  private _context: Context;
 
-  private __robotlegsInitialized = () => {
-    Game.__consoleArgs[0] = `%c %c %c %c %c ${this.constructor.name} Size(${
-      //@ts-ignore
+  private _robotlegsInitialized = () => {
+    Game._consoleArgs[0] = `%c %c %c %c %c ${this.constructor.name} Size(${
+      // @ts-ignore
       this.scale.width
-      //@ts-ignore
+      // @ts-ignore
     }x${this.scale.height}) `;
-    console.log.apply(console, Game.__consoleArgs);
+    console.log.apply(console, Game._consoleArgs);
     this.scene.add(SceneKey.boot, new BootScene(SceneKey.boot));
     this.scene.add(SceneKey.preload, new PreloadScene(SceneKey.preload));
     this.scene.add(SceneKey.main, new GameScene(SceneKey.main));
