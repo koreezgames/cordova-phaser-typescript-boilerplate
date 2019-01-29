@@ -1,0 +1,17 @@
+{
+  "atlas": "main",
+  "chars": [
+    {
+      "frame": "dog",
+      "charCode": "0xaa",
+      "align": 0,
+      "originY": 0
+    },
+    {
+      "frame": "fox",
+      "charCode": "0xbb",
+      "align": 0,
+      "originY": 0
+    }
+  ]
+}

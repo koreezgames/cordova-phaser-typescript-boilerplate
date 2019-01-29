@@ -85,24 +85,24 @@
 					}
 				},
 				{
-					"filename": "card",
+					"filename": "dog",
 					"rotated": false,
-					"trimmed": false,
+					"trimmed": true,
 					"sourceSize": {
-						"w": 32,
-						"h": 32
+						"w": 96,
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
-						"y": 0,
-						"w": 32,
-						"h": 32
+						"y": 18,
+						"w": 96,
+						"h": 62
 					},
 					"frame": {
 						"x": 544,
 						"y": 567,
-						"w": 32,
-						"h": 32
+						"w": 96,
+						"h": 62
 					},
 					"anchor": {
 						"x": 0.5,
@@ -110,24 +110,24 @@
 					}
 				},
 				{
-					"filename": "spider",
+					"filename": "fox",
 					"rotated": false,
-					"trimmed": false,
+					"trimmed": true,
 					"sourceSize": {
-						"w": 32,
-						"h": 32
+						"w": 96,
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
-						"y": 0,
-						"w": 32,
-						"h": 32
+						"y": 18,
+						"w": 96,
+						"h": 61
 					},
 					"frame": {
-						"x": 579,
-						"y": 567,
-						"w": 32,
-						"h": 32
+						"x": 611,
+						"y": 500,
+						"w": 96,
+						"h": 61
 					},
 					"anchor": {
 						"x": 0.5,
@@ -140,6 +140,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:d24ad4f237d813a890b83c0bf875de0b:420ad12123b3635e70f15fe46fdd49e4:03f91ab73e0f4667800419161e658c40$"
+		"smartupdate": "$TexturePacker:SmartUpdate:12e287ab993c2d08b2e892ca10fde862:f2246e4f23b723efff3e9b5fa7d7df19:03f91ab73e0f4667800419161e658c40$"
 	}
 }

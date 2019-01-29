@@ -184,6 +184,76 @@ const handleAtlasesTree = node => {
   }
 };
 
+const handleSpritefontsTree = node => {
+  if (node.type === 'directory') {
+    if (node.children.length === 0) {
+      console.warn(
+        '\x1b[33m%s\x1b[0m',
+        `Warning!!!\nEmpty directory ${node.path}`,
+      );
+    } else {
+      shell
+        .ShellString(`\nexport namespace  ${toPascalCase(node.name)} {`)
+        .toEnd(assetsClassFile);
+      node.children.forEach(childNode => handleSpritefontsTree(childNode));
+      shell.ShellString(`\n}`).toEnd(assetsClassFile);
+    }
+  } else {
+    if (node.extension === '.json') {
+      try {
+        const fileData = fs.readFileSync(node.path, 'ascii');
+        const json = JSON.parse(fileData);
+
+        let name = node.name.substring(0, node.name.indexOf('.'));
+        let path = node.path;
+        if (name.endsWith('-sd')) {
+          return;
+        } else if (name.endsWith('-hd')) {
+          name = name.replace('-hd', '');
+          path = path.replace('-hd', '');
+        }
+        shell
+          .ShellString(`\nexport class  ${toPascalCase(name)} {`)
+          .toEnd(assetsClassFile);
+        shell
+          .ShellString(`\npublic static readonly Name: string =  '${name}'`)
+          .toEnd(assetsClassFile);
+
+        shell
+          .ShellString(
+            `\npublic static readonly XmlURL: string =  '${path.replace(
+              'json',
+              'xml',
+            )}'`,
+          )
+          .toEnd(assetsClassFile);
+
+        shell
+          .ShellString(`\npublic static readonly Chars: any[] =  [`)
+          .toEnd(assetsClassFile);
+        for (let char in json['chars']) {
+          carrFull = json['chars'][char];
+          shell
+            .ShellString(`\n${JSON.stringify(carrFull)},`)
+            .toEnd(assetsClassFile);
+        }
+        shell.ShellString(`\n]`).toEnd(assetsClassFile);
+
+        shell
+          .ShellString(
+            `\npublic static readonly Atlas: string =  '${json['atlas']}'`,
+          )
+          .toEnd(assetsClassFile);
+
+
+        shell.ShellString(`\n}`).toEnd(assetsClassFile);
+      } catch (e) {
+        console.error('\x1b[31m%s\x1b[0m', `Atlas Data File Error: ${e}`);
+      }
+    }
+  }
+};
+
 const handleFontsTree = node => {
   if (node.type === 'directory') {
     if (node.children.length === 0) {
@@ -335,6 +405,8 @@ const loopTree = node => {
       handleAtlasesTree(node);
     } else if (node.name.toLowerCase() === 'bitmapfonts') {
       handleAssetTree(node, 'xml', 'png');
+    } else if (node.name.toLowerCase() === 'spritefonts') {
+      handleSpritefontsTree(node);
     } else if (node.name.toLowerCase() === 'audios') {
       handleAssetTree(node, 'mp3', 'ogg');
     } else if (node.name.toLowerCase() === 'spines') {

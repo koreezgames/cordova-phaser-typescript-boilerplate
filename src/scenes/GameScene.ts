@@ -1,5 +1,12 @@
 import { NinePatch } from '@koreez/phaser3-ninepatch';
-import { Atlases, Bitmapfonts, Fonts, Images, Spines } from '../assets';
+import {
+  Atlases,
+  Bitmapfonts,
+  Fonts,
+  Images,
+  Spines,
+  Spritefonts,
+} from '../assets';
 import { AbstractScene } from './AbstractScene';
 
 export class GameScene extends AbstractScene {
@@ -140,10 +147,11 @@ export class GameScene extends AbstractScene {
       .bitmapText(
         100,
         1700,
-        'Font',
-        '\u00BD \u00BC \u00BA Sprite \u00AA Text',
+        Spritefonts.HelveticaBold.Name,
+        'The quick brown \u00BB jumps\nover the lazy \u00AA',
         70,
       )
+      .setCenterAlign()
       .setDepth(9999);
   }
 
