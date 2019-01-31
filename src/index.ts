@@ -17,9 +17,9 @@ import { FAT_REDUCER_RATIO, CANVAS_CONTAINER_ID } from './constants';
 function getScale(): any {
   const scale: any = {
     // @ts-ignore
-    autoCenter: Phaser.DOM.CENTER_BOTH,
+    autoCenter: Phaser.SCALE.CENTER_BOTH,
     // @ts-ignore
-    mode: Phaser.DOM.FIT,
+    mode: Phaser.SCALE.FIT,
   };
   if (!isDeviceEmulation() && !isOnDevice()) {
     scale.width = +process.env.DESIGN_WIDTH;
