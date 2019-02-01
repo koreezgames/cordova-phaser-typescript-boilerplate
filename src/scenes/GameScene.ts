@@ -145,11 +145,11 @@ export class GameScene extends AbstractScene {
 
     this.add
       .bitmapText(
-        100,
-        1700,
+        this._width * 0.1,
+        this._height * 0.7,
         Spritefonts.HelveticaBold.Name,
         'The quick brown \u00BB jumps\nover the lazy \u00AA',
-        70,
+        this._width * 0.06,
       )
       .setCenterAlign()
       .setDepth(9999);
