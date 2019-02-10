@@ -1,25 +1,23 @@
 import 'reflect-metadata';
 import './phaser';
-import { NinePatchPlugin } from '@koreez/phaser3-ninepatch';
 import { I18nPlugin } from '@koreez/phaser3-i18n';
+import { NinePatchPlugin } from '@koreez/phaser3-ninepatch';
 import { isNullOrUndefined } from 'util';
-import { Fonts } from './assets';
-import { Game } from './Game';
 import webfontloader from 'webfontloader';
+import { Fonts } from './assets';
+import { CANVAS_CONTAINER_ID, FAT_REDUCER_RATIO } from './constants';
+import { Game } from './Game';
 import {
-  isFat,
   isDeviceEmulation,
+  isFat,
   isIPhoneXEmulation,
   isOnDevice,
 } from './utils';
-import { FAT_REDUCER_RATIO, CANVAS_CONTAINER_ID } from './constants';
 
 function getScale(): any {
   const scale: any = {
-    // @ts-ignore
-    autoCenter: Phaser.SCALE.CENTER_BOTH,
-    // @ts-ignore
-    mode: Phaser.SCALE.FIT,
+    autoCenter: Phaser.Scale.CENTER_BOTH,
+    mode: Phaser.Scale.FIT,
   };
   if (!isDeviceEmulation() && !isOnDevice()) {
     scale.width = +process.env.DESIGN_WIDTH;
@@ -52,13 +50,11 @@ function startGame(): void {
       scene: [
         {
           key: 'i18nPlugin',
-          // @ts-ignore
           mapping: 'i18n',
           plugin: I18nPlugin,
         },
         {
           key: 'SpineWebGLPlugin',
-          // @ts-ignore
           mapping: 'spine',
           // @ts-ignore
           plugin: Phaser.SpineWebGLPlugin,

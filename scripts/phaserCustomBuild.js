@@ -16,7 +16,7 @@ var Phaser = {
 
   DOM: require('src/dom'),
 
-  SCALE: require('src/scale'),
+  Scale: require('src/scale'),
 
   Scenes: { ScenePlugin: require('src/scene/ScenePlugin') },
 

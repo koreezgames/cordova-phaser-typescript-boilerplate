@@ -1,12 +1,5 @@
 import { NinePatch } from '@koreez/phaser3-ninepatch';
-import {
-  Atlases,
-  Bitmapfonts,
-  Fonts,
-  Images,
-  Spines,
-  Spritefonts,
-} from '../assets';
+import { Atlases, Bitmapfonts, Fonts, Images, Spines, Spritefonts } from '../assets';
 import { AbstractScene } from './AbstractScene';
 
 export class GameScene extends AbstractScene {
@@ -17,10 +10,8 @@ export class GameScene extends AbstractScene {
   private _height: number;
 
   public init(): void {
-    // @ts-ignore
-    this._width = this.scale.width;
-    // @ts-ignore
-    this._height = this.scale.height;
+    this._width = this.game.scale.width;
+    this._height = this.game.scale.height;
   }
 
   public create(): void {
