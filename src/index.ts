@@ -24,8 +24,16 @@ function getScale(): any {
     scale.height = +process.env.DESIGN_HEIGHT;
     return scale;
   }
-  scale.width = window.screen.width * window.devicePixelRatio;
-  scale.height = window.screen.height * window.devicePixelRatio;
+  const width: number = window.screen.width * window.devicePixelRatio;
+  const height: number = window.screen.height * window.devicePixelRatio;
+  const designRatio: number =
+    +process.env.DESIGN_WIDTH / +process.env.DESIGN_HEIGHT;
+  const canvasRatio: number = width / height;
+  const ratioMultiplier: number = designRatio / canvasRatio;
+  scale.width =
+    +process.env.DESIGN_WIDTH * (width < height ? 1 : ratioMultiplier);
+  scale.height =
+    +process.env.DESIGN_HEIGHT * (width < height ? ratioMultiplier : 1);
   if (isFat(scale)) {
     scale.width = +process.env.DESIGN_WIDTH;
     scale.height = Math.round(+process.env.DESIGN_HEIGHT * FAT_REDUCER_RATIO);
