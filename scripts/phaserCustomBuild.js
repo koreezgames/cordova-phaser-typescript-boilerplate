@@ -92,6 +92,10 @@ var Phaser = {
     Array: { GetRandom: require('src/utils/array/GetRandom') },
     Objects: { GetAdvancedValue: require('src/utils/object/GetAdvancedValue') },
   },
+
+  Structs: {
+    Size: require('src/structs/Size'),
+  },
 };
 
 if (typeof PLUGIN_CAMERA3D) {

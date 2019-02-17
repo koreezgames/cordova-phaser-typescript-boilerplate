@@ -8,11 +8,7 @@ export let designWidth = +process.env.DESIGN_WIDTH;
 
 export let designHeight = +process.env.DESIGN_HEIGHT;
 
-export let viewportWidth: number;
-
-export let viewportHeight: number;
-
-export let viewportScale: number;
+export let viewBox: ViewBox;
 
 if (width > height) {
   designHeight = +process.env.DESIGN_WIDTH;
@@ -33,13 +29,32 @@ export function getScale(): {
   const designRatio: number = designWidth / designHeight;
   const canvasRatio: number = width / height;
   const ratioMultiplier: number = designRatio / canvasRatio;
-  scale.height = designHeight * ratioMultiplier;
+  scale.height = Math.trunc(designHeight * ratioMultiplier);
   scale.width = designWidth;
-  viewportScale = Math.min(
-    scale.width / designWidth,
-    scale.height / designHeight,
+  viewBox = new ViewBox(
+    designWidth,
+    designHeight,
+    Phaser.Structs.Size.FIT,
+    scale,
   );
-  viewportWidth = designWidth * viewportScale;
-  viewportHeight = designHeight * viewportScale;
   return scale;
+}
+
+class ViewBox extends Phaser.Structs.Size {
+  constructor(
+    width: number,
+    height: number,
+    aspectMode: number,
+    parent: { width: number; height: number },
+  ) {
+    super(width, height, aspectMode, parent);
+    this.fitTo(parent.width, parent.height);
+    this._scale = Math.min(width / parent.width, height / parent.height);
+  }
+
+  private _scale: number;
+
+  public get scale(): number {
+    return this._scale;
+  }
 }

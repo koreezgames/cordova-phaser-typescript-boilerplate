@@ -1,5 +1,4 @@
 import { Atlases } from '../assets';
-import { viewportHeight, viewportWidth } from '../layouts';
 import { AbstractScene } from './AbstractScene';
 
 export class BgScene extends AbstractScene {
@@ -26,15 +25,5 @@ export class BgScene extends AbstractScene {
           this._height / Atlases.Main.Atlas.FrameSourceSizes.Bg.h,
         ),
       );
-
-    const rectangle = this.add
-      .rectangle(
-        (this._width - viewportWidth) / 2,
-        (this._height - viewportHeight) / 2,
-        viewportWidth,
-        viewportHeight,
-      )
-      .setOrigin(0);
-    rectangle.setStrokeStyle(1, 0xff0000);
   }
 }

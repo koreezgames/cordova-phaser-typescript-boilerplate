@@ -4,6 +4,7 @@ import { SignalCommandMapExtension } from '@robotlegsjs/signalcommandmap';
 import { RobotlegsConfig } from './config/RobotlegsConfig';
 import { SceneMediatorConfig } from './config/SceneMediatorConfig';
 import { SceneKey } from './constants/SceneKey';
+import { viewBox } from './layouts';
 import { BgScene } from './scenes/BgScene';
 import { BootScene } from './scenes/BootScene';
 import { GameScene } from './scenes/GameScene';
@@ -33,11 +34,11 @@ export class Game extends Phaser.Game {
   private _context: Context;
 
   private _robotlegsInitialized = () => {
-    Game._consoleArgs[0] = `%c %c %c %c %c ${this.constructor.name} Size(${
-      // @ts-ignore
+    Game._consoleArgs[0] = `%c %c %c %c %c ${this.constructor.name} - ${
       this.scale.width
-      // @ts-ignore
-    }x${this.scale.height}) | Orientation - ${
+    }x${this.scale.height} | View - ${Math.trunc(viewBox.width)}x${Math.trunc(
+      viewBox.height,
+    )} - ${viewBox.scale} | Orientation - ${
       this.scale.isLandscape ? 'Landscape' : 'Portrait'
     } `;
     console.log.apply(console, Game._consoleArgs);
