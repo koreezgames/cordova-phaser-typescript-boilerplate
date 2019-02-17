@@ -1,6 +1,10 @@
 {
   "defaultSeverity": "error",
-  "extends": ["tslint-config-airbnb", "tslint-consistent-codestyle"],
+  "extends": [
+    "tslint-config-airbnb",
+    "tslint-consistent-codestyle",
+    "tslint-config-prettier"
+  ],
   "linterOptions": {
     "exclude": ["./src/com/koreez/jelly/assets.ts"]
   },

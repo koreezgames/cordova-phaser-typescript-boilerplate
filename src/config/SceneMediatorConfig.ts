@@ -1,8 +1,10 @@
 import { IConfig, inject, injectable } from '@robotlegsjs/core';
 import { ISceneMediatorMap, IViewMediatorMap } from '@robotlegsjs/phaser';
+import { BgSceneMediator } from '../mediators/BgSceneMediator';
 import { BootSceneMediator } from '../mediators/BootSceneMediator';
 import { GameSceneMediator } from '../mediators/GameSceneMediator';
 import { PreloadSceneMediator } from '../mediators/PreloadSceneMediator';
+import { BgScene } from '../scenes/BgScene';
 import { BootScene } from '../scenes/BootScene';
 import { GameScene } from '../scenes/GameScene';
 import { PreloadScene } from '../scenes/PreloadScene';
@@ -23,6 +25,7 @@ export class SceneMediatorConfig implements IConfig {
   private _mapSceneMediators(): void {
     this._sceneMediatorMap.map(BootScene).toMediator(BootSceneMediator);
     this._sceneMediatorMap.map(PreloadScene).toMediator(PreloadSceneMediator);
+    this._sceneMediatorMap.map(BgScene).toMediator(BgSceneMediator);
     this._sceneMediatorMap.map(GameScene).toMediator(GameSceneMediator);
   }
 

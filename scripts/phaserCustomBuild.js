@@ -48,6 +48,7 @@ var Phaser = {
       Text: require('src/gameobjects/text/static/TextFactory'),
       BitmapText: require('src/gameobjects/bitmaptext/static/BitmapTextFactory'),
       DynamicBitmapText: require('src/gameobjects/bitmaptext/dynamic/DynamicBitmapTextFactory'),
+      DynamicBitmapText: require('src/gameobjects/shape/rectangle/RectangleFactory'),
     },
 
     Creators: {

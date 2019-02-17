@@ -5,41 +5,11 @@ import { NinePatchPlugin } from '@koreez/phaser3-ninepatch';
 import { isNullOrUndefined } from 'util';
 import webfontloader from 'webfontloader';
 import { Fonts } from './assets';
-import { CANVAS_CONTAINER_ID, FAT_REDUCER_RATIO } from './constants';
+import { CANVAS_CONTAINER_ID } from './constants';
 import { Game } from './Game';
-import {
-  isDeviceEmulation,
-  isFat,
-  isIPhoneXEmulation,
-  isOnDevice,
-} from './utils';
+import { isIPhoneXEmulation } from './utils';
+import { getScale } from './layouts';
 
-function getScale(): any {
-  const scale: any = {
-    autoCenter: Phaser.Scale.CENTER_BOTH,
-    mode: Phaser.Scale.FIT,
-  };
-  if (!isDeviceEmulation() && !isOnDevice()) {
-    scale.width = +process.env.DESIGN_WIDTH;
-    scale.height = +process.env.DESIGN_HEIGHT;
-    return scale;
-  }
-  const width: number = window.screen.width * window.devicePixelRatio;
-  const height: number = window.screen.height * window.devicePixelRatio;
-  const designRatio: number =
-    +process.env.DESIGN_WIDTH / +process.env.DESIGN_HEIGHT;
-  const canvasRatio: number = width / height;
-  const ratioMultiplier: number = designRatio / canvasRatio;
-  scale.width =
-    +process.env.DESIGN_WIDTH * (width < height ? 1 : ratioMultiplier);
-  scale.height =
-    +process.env.DESIGN_HEIGHT * (width < height ? ratioMultiplier : 1);
-  if (isFat(scale)) {
-    scale.width = +process.env.DESIGN_WIDTH;
-    scale.height = Math.round(+process.env.DESIGN_HEIGHT * FAT_REDUCER_RATIO);
-  }
-  return scale;
-}
 
 function startGame(): void {
   const gameConfig: GameConfig = {

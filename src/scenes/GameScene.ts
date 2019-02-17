@@ -1,5 +1,6 @@
 import { NinePatch } from '@koreez/phaser3-ninepatch';
-import { Atlases, Bitmapfonts, Fonts, Images, Spines, Spritefonts } from '../assets';
+import { Bitmapfonts, Fonts, Images, Spines, Spritefonts } from '../assets';
+import { viewportHeight, viewportScale, viewportWidth } from '../layouts';
 import { AbstractScene } from './AbstractScene';
 
 export class GameScene extends AbstractScene {
@@ -10,22 +11,19 @@ export class GameScene extends AbstractScene {
   private _height: number;
 
   public init(): void {
-    this._width = this.game.scale.width;
-    this._height = this.game.scale.height;
+    this._width = viewportWidth;
+    this._height = viewportHeight;
+    console.log(this.scale);
   }
 
   public create(): void {
-    this.add
-      .image(
-        this._width * 0.5,
-        this._height * 0.5,
-        Atlases.Main.Atlas.Name,
-        Atlases.Main.Atlas.Frames.Bg,
-      )
-      .setScale(
-        this._width / Atlases.Main.Atlas.FrameSourceSizes.Bg.w,
-        this._height / Atlases.Main.Atlas.FrameSourceSizes.Bg.h,
-      );
+    super.create();
+    this.cameras.main.setViewport(
+      (this.scale.gameSize.width - this._width) / 2,
+      (this.scale.gameSize.height - this._height) / 2,
+      this._width,
+      this._height,
+    );
 
     this._ninePatch = this.add.ninePatch(
       this._width * 0.5,
@@ -115,7 +113,7 @@ export class GameScene extends AbstractScene {
         Spines.Builder.Spine.Animations.Walking,
         true,
       )
-      .setScale(0.14);
+      .setScale(0.14 * viewportScale);
     this.add
       .text(this._width * 0.41, this._height * 0.3, 'text', {
         fontFamily: Fonts.K8x12.Font.Family,
@@ -132,8 +130,6 @@ export class GameScene extends AbstractScene {
         this._width * 0.1,
       )
       .setOrigin(0.5);
-    super.create();
-
     this.add
       .bitmapText(
         this._width * 0.1,
@@ -147,11 +143,11 @@ export class GameScene extends AbstractScene {
   }
 
   public update(): void {
-    this._ninePatch.angle += this._direction;
+    // this._ninePatch.angle += this._direction;
   }
 
   public redraw(width: number, height: number, direction: number): void {
-    this._direction = direction;
-    this._ninePatch.resize(width, height);
+    // this._direction = direction;
+    // this._ninePatch.resize(width, height);
   }
 }
