@@ -23,13 +23,8 @@ export function portraitOrLandscape<T>(
   return scale.isGamePortrait ? portrait : landscape;
 }
 
-export function getScale(): {
-  autoCenter: any;
-  mode: any;
-  width: number;
-  height: number;
-} {
-  const scale: any = {
+export function getScale(): ScaleConfig {
+  const scale: ScaleConfig = {
     autoCenter: Phaser.Scale.CENTER_BOTH,
     mode: Phaser.Scale.FIT,
   };
@@ -45,19 +40,23 @@ export function getScale(): {
     Phaser.Structs.Size.FIT,
     scale,
   );
+
   return scale;
 }
 
 class ViewBox extends Phaser.Structs.Size {
   constructor(
-    width: number,
-    height: number,
+    boxWidth: number,
+    bixHeight: number,
     aspectMode: number,
-    parent: { width: number; height: number },
+    parent: { width?: string | number; height?: string | number },
   ) {
-    super(width, height, aspectMode, parent);
-    this.fitTo(parent.width, parent.height);
-    this._scale = Math.min(width / parent.width, height / parent.height);
+    super(boxWidth, bixHeight, aspectMode, parent);
+    this.fitTo(+parent.width, +parent.height);
+    this._scale = Math.min(
+      boxWidth / +parent.width,
+      bixHeight / +parent.height,
+    );
   }
 
   private _scale: number;

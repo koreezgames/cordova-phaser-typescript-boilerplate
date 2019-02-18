@@ -13,9 +13,10 @@ export abstract class AbstractSignal extends Signal {
     `background: ${'#757130'}`,
   ];
 
+  // tslint:disable-next-line:no-any
   public dispatch(...valueObjects: any[]): void {
     let str: string = '';
-    valueObjects.forEach((valueObject: any, index: number) => {
+    valueObjects.forEach((valueObject: object, index: number) => {
       str += `${this.valueClasses[index].name}:'${JSON.stringify(
         valueObject,
         getCircularReplacer(),
@@ -25,6 +26,7 @@ export abstract class AbstractSignal extends Signal {
     AbstractSignal.__dispatchConsoleArgs[0] = `%c %c %c ${
       this.constructor.name
     }: dispatch [ ${str} ] %c %c `;
+    // tslint:disable-next-line:no-console
     console.log.apply(console, AbstractSignal.__dispatchConsoleArgs);
     super.dispatch(...valueObjects);
   }

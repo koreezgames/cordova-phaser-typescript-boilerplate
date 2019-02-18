@@ -31,13 +31,11 @@ export class ChipsGroup extends AbstractView {
 
         const gemX =
           startX +
-          13 * xx +
-          Atlases.Main.Atlas.FrameSourceSizes.Gem5.w * xx +
+          xx * (Atlases.Main.Atlas.FrameSourceSizes.Gem5.w + 13) +
           Atlases.Main.Atlas.FrameSourceSizes.Gem5.w / 2;
         const gemY =
           startY +
-          12.5 * yy +
-          Atlases.Main.Atlas.FrameSourceSizes.Gem5.h * yy +
+          yy * (Atlases.Main.Atlas.FrameSourceSizes.Gem5.h + 12.5) +
           Atlases.Main.Atlas.FrameSourceSizes.Gem5.h / 2;
 
         const gem = this.scene.add.image(
@@ -45,7 +43,8 @@ export class ChipsGroup extends AbstractView {
           gemY,
           Atlases.Main.Atlas.Name,
           // @ts-ignore
-          Atlases.Main.Atlas.Frames[`Gem${1 + Math.floor(Math.random() * 5)}`],
+          // tslint:disable-next-line:insecure-random
+          Atlases.Main.Atlas.Frames[`Gem${Math.floor(Math.random() * 5) + 1}`],
         );
 
         gem.setInteractive();

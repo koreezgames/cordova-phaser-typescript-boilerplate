@@ -1,4 +1,3 @@
-import { NinePatch } from '@koreez/phaser3-ninepatch';
 import { Atlases } from '../assets';
 import { AbstractScene } from '../scenes/AbstractScene';
 import { AbstractView } from './AbstractView';
@@ -6,8 +5,6 @@ import { ChipsGroup } from './ChipsGroup';
 
 export class GameBoxView extends AbstractView {
   public scene: AbstractScene;
-
-  private _ninePatch: NinePatch;
 
   public build(): void {
     const lifeBar = this.scene.add.image(

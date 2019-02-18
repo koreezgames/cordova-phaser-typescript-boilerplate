@@ -1,8 +1,8 @@
 import { IConfig, IContext, inject, injectable } from '@robotlegsjs/core';
 import { ISignalCommandMap } from '@robotlegsjs/signalcommandmap';
-import { GameStartupSignal } from '../signals/GameStartupSignal';
 import { GameStartupCommand } from '../commands/GameStartupCommand';
 import { GameModel } from '../models/GameModel';
+import { GameStartupSignal } from '../signals/GameStartupSignal';
 
 @injectable()
 export class RobotlegsConfig implements IConfig {

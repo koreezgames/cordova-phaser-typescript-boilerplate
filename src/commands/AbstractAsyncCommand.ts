@@ -16,6 +16,7 @@ export abstract class AbstractAsyncCommand extends AsyncCommand {
     AbstractAsyncCommand._consoleArgs[0] = `%c %c %c ${
       this.constructor.name
     }: execute: start %c %c `;
+    // tslint:disable-next-line:no-console
     console.log.apply(console, AbstractAsyncCommand._consoleArgs);
   }
 
@@ -23,6 +24,7 @@ export abstract class AbstractAsyncCommand extends AsyncCommand {
     AbstractAsyncCommand._consoleArgs[0] = `%c %c %c ${
       this.constructor.name
     }: execute: complete [${success}] %c %c `;
+    // tslint:disable-next-line:no-console
     console.log.apply(console, AbstractAsyncCommand._consoleArgs);
     super.dispatchComplete(success);
   }

@@ -11,7 +11,7 @@ import { GameScene } from './scenes/GameScene';
 import { PreloadScene } from './scenes/PreloadScene';
 
 export class Game extends Phaser.Game {
-  constructor(gameConfig: any) {
+  constructor(gameConfig: GameConfig) {
     super(gameConfig);
     this._context = new Context();
     this._context
@@ -41,12 +41,13 @@ export class Game extends Phaser.Game {
     )} - ${viewBox.aspectRatio} | Orientation - ${
       this.scale.isGameLandscape ? 'Landscape' : 'Portrait'
     } `;
+    // tslint:disable-next-line:no-console
     console.log.apply(console, Game._consoleArgs);
     this._context.injector.bind('game').toConstantValue(this);
-    this.scene.add(SceneKey.boot, new BootScene(SceneKey.boot));
-    this.scene.add(SceneKey.preload, new PreloadScene(SceneKey.preload));
-    this.scene.add(SceneKey.bg, new BgScene(SceneKey.bg));
-    this.scene.add(SceneKey.game, new GameScene(SceneKey.game));
-    this.scene.start(SceneKey.boot);
+    this.scene.add(SceneKey.Boot, new BootScene(SceneKey.Boot));
+    this.scene.add(SceneKey.Preload, new PreloadScene(SceneKey.Preload));
+    this.scene.add(SceneKey.Bg, new BgScene(SceneKey.Bg));
+    this.scene.add(SceneKey.Game, new GameScene(SceneKey.Game));
+    this.scene.start(SceneKey.Boot);
   };
 }

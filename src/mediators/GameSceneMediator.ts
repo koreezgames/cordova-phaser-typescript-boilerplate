@@ -10,6 +10,7 @@ export class GameSceneMediator extends AbstractSceneMediator<GameScene> {
 
   public initialize(): void {
     super.initialize();
-    this.gameStartupSignal.dispatch(1000 + Math.random() * 4000);
+    // tslint:disable-next-line:insecure-random
+    this.gameStartupSignal.dispatch(Math.random() * 4000 + 1000);
   }
 }

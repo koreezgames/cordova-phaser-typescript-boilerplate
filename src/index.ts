@@ -1,3 +1,4 @@
+/* tslint:disable:no-import-side-effect ordered-imports  */
 import 'reflect-metadata';
 import './phaser';
 import { I18nPlugin } from '@koreez/phaser3-i18n';
@@ -34,26 +35,24 @@ function startGame(): void {
     },
   };
 
+  // tslint:disable-next-line:no-unused-expression
   new Game(gameConfig);
 }
 
-function loadWebFont(callback: () => any): void {
-  if (Object.keys(Fonts).length > 0) {
+function loadWebFont(callback: () => void): void {
+  const fonts: string[] = Object.keys(Fonts);
+  if (fonts.length > 0) {
     const webFontLoaderOptions: webfontloader.Config = {};
     webFontLoaderOptions.custom = {
       families: [],
       urls: [],
     };
-
-    for (const font in Fonts) {
-      if (!Fonts.hasOwnProperty(font)) {
-        continue;
-      }
-      // @ts-ignore
-      const webFont: any = Fonts[font].Font;
+    fonts.forEach(font => {
+      // tslint:disable-next-line:no-any
+      const webFont: { Family: string; CSS: string } = (<any>Fonts)[font].Font;
       webFontLoaderOptions.custom.families.push(webFont.Family);
       webFontLoaderOptions.custom.urls.push(webFont.CSS);
-    }
+    });
     webFontLoaderOptions.active = callback;
     webfontloader.load(webFontLoaderOptions);
   } else {
@@ -82,7 +81,7 @@ document.addEventListener('deviceready', () => {
           () => {
             AndroidFullScreen.immersiveMode();
           },
-          (error: any) => {
+          (error: Error) => {
             console.error(error);
           },
         );

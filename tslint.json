@@ -1,14 +1,23 @@
 {
   "defaultSeverity": "error",
   "extends": [
-    "tslint-config-airbnb",
+    "tslint-microsoft-contrib",
     "tslint-consistent-codestyle",
     "tslint-config-prettier"
   ],
   "linterOptions": {
-    "exclude": ["./src/com/koreez/jelly/assets.ts"]
+    "exclude": ["./src/assets.ts"]
   },
   "rules": {
+    "no-relative-imports": false,
+    "typedef": [
+      true,
+      "call-signature",
+      "parameter",
+      "property-declaration",
+      "member-variable-declaration",
+      "array-destructuring"
+    ],
     "ter-indent": ["error", "spaces", 4],
     "prettier": true,
     "function-name": [

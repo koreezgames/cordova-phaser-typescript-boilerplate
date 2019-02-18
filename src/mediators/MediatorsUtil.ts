@@ -9,7 +9,7 @@ import {
 
 export class MediatorsUtil {
   private static _disposeReaction<TD>(
-    map: Map<(...args: any[]) => void, IReactionDisposer>,
+    map: Map<(arg: TD, r: IReactionPublic) => void, IReactionDisposer>,
     effect: (arg: TD, r: IReactionPublic) => void,
   ): void {
     if (map.has(effect)) {
@@ -19,8 +19,16 @@ export class MediatorsUtil {
     }
   }
 
-  protected _reactionMap: Map<(...args: any[]) => void, IReactionDisposer>;
-  protected _whenMap: Map<(...args: any[]) => void, IReactionDisposer>;
+  protected _reactionMap: Map<
+    // tslint:disable-next-line:no-any
+    (arg: any, r: IReactionPublic) => void,
+    IReactionDisposer
+  >;
+  protected _whenMap: Map<
+    // tslint:disable-next-line:no-any
+    (arg: any, r: IReactionPublic) => void,
+    IReactionDisposer
+  >;
 
   constructor(context: object) {
     this._mediatorContext = context;
@@ -42,6 +50,7 @@ export class MediatorsUtil {
     MediatorsUtil.__consoleArgs[0] = `%c %c %c ${
       this._mediatorContext.constructor.name
     }: initialize %c %c `;
+    // tslint:disable-next-line:no-console
     console.log.apply(console, MediatorsUtil.__consoleArgs);
   }
 
@@ -50,10 +59,11 @@ export class MediatorsUtil {
       reactionDisposer();
     });
     this._reactionMap.clear();
-    this._reactionMap = null;
+    this._reactionMap = undefined;
     MediatorsUtil.__consoleArgs[0] = `%c %c %c ${
       this._mediatorContext.constructor.name
     }: destroy %c %c `;
+    // tslint:disable-next-line:no-console
     console.log.apply(console, MediatorsUtil.__consoleArgs);
   }
 
@@ -66,6 +76,7 @@ export class MediatorsUtil {
       effect,
       reaction(expression, effect.bind(this._mediatorContext), opts),
     );
+
     return this;
   }
 
@@ -94,6 +105,7 @@ export class MediatorsUtil {
       whenOptions,
     );
     this._whenMap.set(effect, whenDisposer);
+
     return this;
   }
 
@@ -102,6 +114,7 @@ export class MediatorsUtil {
   ): this {
     MediatorsUtil._disposeReaction(this._reactionMap, effect);
     MediatorsUtil._disposeReaction(this._whenMap, effect);
+
     return this;
   }
 }

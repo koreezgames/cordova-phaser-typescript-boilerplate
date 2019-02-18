@@ -17,7 +17,7 @@ export abstract class AbstractSceneMediator<
 
   public destroy(): void {
     this._baseMediatorsUtil.destroy();
-    this._baseMediatorsUtil = null;
+    this._baseMediatorsUtil = undefined;
   }
 
   protected addReaction<TD>(
@@ -26,6 +26,7 @@ export abstract class AbstractSceneMediator<
     opts?: IReactionOptions,
   ): this {
     this._baseMediatorsUtil.addReaction(expression, effect, opts);
+
     return this;
   }
 
@@ -33,6 +34,7 @@ export abstract class AbstractSceneMediator<
     effect: (arg: TD, r: IReactionPublic) => void,
   ): this {
     this._baseMediatorsUtil.removeReaction(effect);
+
     return this;
   }
 

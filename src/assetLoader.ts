@@ -1,3 +1,5 @@
+/* tslint:disable:no-import-side-effect ordered-imports no-any */
+
 function loadAssets(
   scene: Phaser.Scene,
   loaderName: string,
@@ -7,7 +9,7 @@ function loadAssets(
 ): void {
   if (typeof node === 'function') {
     if (!checker(node.Name)) {
-      (scene.load as any)[loaderName](
+      (<any>scene.load)[loaderName](
         node.Name,
         ...keys.map((key: string) => node[key]),
       );
@@ -41,14 +43,14 @@ function addSpriteIntoFont(
   // if reference char is string, convert it to number
 
   const referenceCharF: number =
-    typeof referenceChar === 'string' ? referenceChar.charCodeAt(0) : null;
+    typeof referenceChar === 'string' ? referenceChar.charCodeAt(0) : undefined;
 
   // get font characters and reference character
   const font: any = game.cache.bitmapFont.get(fontName);
-  const fontChars: any = (font.data as BitmapFontData).chars;
+  const fontChars: any = (<BitmapFontData>font.data).chars;
   const refChar: any = fontChars[referenceCharF];
 
-  if (refChar == null) {
+  if (refChar === undefined) {
     throw new Error(
       `Reference character ${String.fromCharCode(
         referenceCharF,
@@ -57,9 +59,9 @@ function addSpriteIntoFont(
   }
 
   // get frame of new sprite character
-  const f: any = game.textures.getFrame(font['texture'], frame);
-  const fWidth: number = f.customData['sourceSize']['w'];
-  const fHeight: number = f.customData['sourceSize']['h'];
+  const f: any = game.textures.getFrame(font.texture, frame);
+  const fWidth: number = f.customData.sourceSize.w;
+  const fHeight: number = f.customData.sourceSize.h;
 
   // calculate y offset of sprite chracter
   const refY: any =
@@ -154,17 +156,17 @@ export function loadXMLs(scene: Phaser.Scene, node: any): void {
 }
 
 export function createSpritefont(scene: Phaser.Scene, node: any): void {
-  const fontName = node['Name'];
-  const textureKey = node['Atlas'];
-  const frameKey = node['Name'];
-  const chars = node['Chars'];
+  const fontName = node.Name;
+  const textureKey = node.Atlas;
+  const frameKey = node.Name;
+  const chars = node.Chars;
   // @ts-ignore
   Phaser.GameObjects.BitmapText.ParseFromAtlas(
     scene,
     fontName,
     textureKey,
     frameKey,
-    node['Name'],
+    node.Name,
   );
   const fontFrame: Phaser.Textures.Frame = scene.sys.game.textures.getFrame(
     textureKey,

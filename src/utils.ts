@@ -5,15 +5,17 @@ import {
   SLOW_DEVICES,
 } from './constants';
 
-export function getCircularReplacer(): any {
+export function getCircularReplacer(): (key: string, value: object) => object {
   const seen = new WeakSet();
-  return (key: string, value: any) => {
+
+  return (key: string, value: object) => {
     if (typeof value === 'object' && value !== null) {
       if (seen.has(value)) {
         return;
       }
       seen.add(value);
     }
+
     return value;
   };
 }
@@ -48,6 +50,7 @@ export function isIPhoneXScreenSize(): boolean {
       return true;
     }
   }
+
   return false;
 }
 
@@ -59,6 +62,7 @@ export function hasNotch(): boolean {
   if (isNullOrUndefined(window.device)) {
     return isIPhoneXEmulation();
   }
+
   return (
     DEVICES_WITH_NOTCH.indexOf(window.device.model) !== -1 ||
     isIPhoneXSimulator()
@@ -69,23 +73,16 @@ export function isSlowDevice(): boolean {
   if (isNullOrUndefined(window.device)) {
     return false;
   }
+
   return SLOW_DEVICES.indexOf(window.device.model) !== -1;
 }
 
-export function getEnumKeys(e: any): any[] {
-  return Object.keys(e).filter(
-    (k: any) => typeof e[k as any] === typeof e[k as any],
-  );
+export function getEnumKeys(e: { [key: string]: string | number }): string[] {
+  return Object.keys(e).filter(k => typeof e[k] === typeof e[k]);
 }
 
-export function getEnumValues(e: any): any[] {
-  return getEnumKeys(e).map((k: any) => e[k as any]);
-}
-
-export function getEnumKey(e: any, key: any): string {
-  return getEnumKeys(e).find((k: any) => e[k as any] === key);
-}
-
-export function getEnumValue(e: any, value: any): any {
-  return getEnumValues(e).find((v: any) => e[v as any] === value);
+export function getEnumValues(e: {
+  [key: string]: string | number;
+}): (string | number)[] {
+  return getEnumKeys(e).map(k => e[k]);
 }

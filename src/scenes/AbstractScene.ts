@@ -23,6 +23,7 @@ export abstract class AbstractScene extends Phaser.Scene {
     AbstractScene._consoleArgs[0] = `%c %c %c ${
       this.sys.settings.key
     }: init %c %c `;
+    // tslint:disable-next-line:no-console
     console.log.apply(console, AbstractScene._consoleArgs);
   }
 
@@ -30,6 +31,7 @@ export abstract class AbstractScene extends Phaser.Scene {
     AbstractScene._consoleArgs[0] = `%c %c %c ${
       this.sys.settings.key
     }: create %c %c `;
+    // tslint:disable-next-line:no-console
     console.log.apply(console, AbstractScene._consoleArgs);
     this._handleCreationComplete();
   }
@@ -38,6 +40,7 @@ export abstract class AbstractScene extends Phaser.Scene {
     AbstractScene._consoleArgs[0] = `%c %c %c ${
       this.sys.settings.key
     }: shutdown %c %c `;
+    // tslint:disable-next-line:no-console
     console.log.apply(console, AbstractScene._consoleArgs);
   }
 

@@ -1,4 +1,10 @@
-import { loadAtlases, loadAudios, loadBitmapfonts, loadImages, loadSpritefonts } from '../assetLoader';
+import {
+  loadAtlases,
+  loadAudios,
+  loadBitmapfonts,
+  loadImages,
+  loadSpritefonts,
+} from '../assetLoader';
 import { Atlases, Audios, Bitmapfonts, Images, Spritefonts } from '../assets';
 import { SceneKey } from '../constants/SceneKey';
 import { AbstractScene } from './AbstractScene';
@@ -25,9 +31,9 @@ export class PreloadScene extends AbstractScene {
   public create(): void {
     // createSpritefont(this, Spritefonts.HelveticaBold);
     super.create();
-    this.scene.start(SceneKey.bg);
-    this.scene.start(SceneKey.game);
-    this.scene.bringToTop(SceneKey.game);
+    this.scene.start(SceneKey.Bg);
+    this.scene.start(SceneKey.Game);
+    this.scene.bringToTop(SceneKey.Game);
     this.scene.remove(this);
   }
 }

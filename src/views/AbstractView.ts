@@ -12,6 +12,7 @@ export abstract class AbstractView extends Phaser.GameObjects.Container {
     AbstractView.__consoleArgs[0] = `%c %c %c ${
       this.constructor.name
     }: destroy %c %c `;
+    // tslint:disable-next-line:no-console
     console.log.apply(console, AbstractView.__consoleArgs);
     super.destroy();
   }

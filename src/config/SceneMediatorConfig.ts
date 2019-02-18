@@ -33,6 +33,5 @@ export class SceneMediatorConfig implements IConfig {
 
   private _mapViewMediators(): void {
     this._viewMediatorMap.map(GameBoxView).toMediator(GameBoxViewMediator);
-    return;
   }
 }
