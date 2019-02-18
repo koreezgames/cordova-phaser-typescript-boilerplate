@@ -38,10 +38,11 @@ export class Game extends Phaser.Game {
       this.scale.width
     }x${this.scale.height} | View - ${Math.trunc(viewBox.width)}x${Math.trunc(
       viewBox.height,
-    )} - ${viewBox.scale} | Orientation - ${
+    )} - ${viewBox.aspectRatio} | Orientation - ${
       this.scale.isLandscape ? 'Landscape' : 'Portrait'
     } `;
     console.log.apply(console, Game._consoleArgs);
+    this._context.injector.bind('game').toConstantValue(this);
     this.scene.add(SceneKey.boot, new BootScene(SceneKey.boot));
     this.scene.add(SceneKey.preload, new PreloadScene(SceneKey.preload));
     this.scene.add(SceneKey.bg, new BgScene(SceneKey.bg));

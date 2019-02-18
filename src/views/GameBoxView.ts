@@ -4,14 +4,14 @@ import { viewBox } from '../layouts';
 import { AbstractScene } from '../scenes/AbstractScene';
 import { AbstractView } from './AbstractView';
 
-export class GameBox extends AbstractView {
+export class GameBoxView extends AbstractView {
   public scene: AbstractScene;
 
   private _ninePatch: NinePatch;
 
   public build(): void {
     const rectangle = this.scene.add
-      .rectangle(0, 0, this.width, this.height)
+      .rectangle(0, 0, this.width, this.width)
       .setOrigin(0);
     rectangle.setStrokeStyle(1, 0xff0000);
     this.add(rectangle);

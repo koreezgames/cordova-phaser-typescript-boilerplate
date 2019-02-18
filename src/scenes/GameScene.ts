@@ -1,21 +1,14 @@
-import { viewBox } from '../layouts';
-import { GameBox } from '../views/GameBox';
+import { GameBoxView } from '../views/GameBoxView';
 import { AbstractScene } from './AbstractScene';
 
 export class GameScene extends AbstractScene {
-  private _gameBox: GameBox;
+  private _gameBox: GameBoxView;
 
   public init(): void {}
 
   public create(): void {
     super.create();
-    this._gameBox = new GameBox(this);
-    this._gameBox.setPosition(
-      (this.scale.width - viewBox.width) / 2,
-      (this.scale.height - viewBox.height) / 2,
-    );
-    this._gameBox.setSize(viewBox.width, viewBox.height);
-    this._gameBox.build();
+    this._gameBox = new GameBoxView(this);
     this.add.existing(this._gameBox);
   }
 
