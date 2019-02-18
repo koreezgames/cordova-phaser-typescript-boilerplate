@@ -4,30 +4,30 @@
 			"image": "main.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 873,
-				"h": 962
+				"w": 405,
+				"h": 627
 			},
 			"scale": 1,
 			"frames": [
 				{
-					"filename": "bg",
+					"filename": "lifebar",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 540,
-						"h": 960
+						"w": 138,
+						"h": 28
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 540,
-						"h": 960
+						"w": 138,
+						"h": 28
 					},
 					"frame": {
 						"x": 1,
 						"y": 1,
-						"w": 540,
-						"h": 960
+						"w": 138,
+						"h": 28
 					},
 					"anchor": {
 						"x": 0.5,
@@ -35,49 +35,24 @@
 					}
 				},
 				{
-					"filename": "helvetica_bold",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 330,
-						"h": 523
-					},
-					"spriteSourceSize": {
-						"x": 1,
-						"y": 1,
-						"w": 328,
-						"h": 496
-					},
-					"frame": {
-						"x": 544,
-						"y": 1,
-						"w": 328,
-						"h": 496
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "mushroom",
+					"filename": "gem_01",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 64,
-						"h": 64
+						"w": 50,
+						"h": 50
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 64,
-						"h": 64
+						"w": 50,
+						"h": 50
 					},
 					"frame": {
-						"x": 544,
-						"y": 500,
-						"w": 64,
-						"h": 64
+						"x": 142,
+						"y": 1,
+						"w": 50,
+						"h": 50
 					},
 					"anchor": {
 						"x": 0.5,
@@ -85,24 +60,24 @@
 					}
 				},
 				{
-					"filename": "dog",
+					"filename": "gem_02",
 					"rotated": false,
-					"trimmed": true,
+					"trimmed": false,
 					"sourceSize": {
-						"w": 96,
-						"h": 96
+						"w": 50,
+						"h": 50
 					},
 					"spriteSourceSize": {
 						"x": 0,
-						"y": 18,
-						"w": 96,
-						"h": 62
+						"y": 0,
+						"w": 50,
+						"h": 50
 					},
 					"frame": {
-						"x": 544,
-						"y": 567,
-						"w": 96,
-						"h": 62
+						"x": 195,
+						"y": 1,
+						"w": 50,
+						"h": 50
 					},
 					"anchor": {
 						"x": 0.5,
@@ -110,24 +85,99 @@
 					}
 				},
 				{
-					"filename": "fox",
+					"filename": "gem_03",
 					"rotated": false,
-					"trimmed": true,
+					"trimmed": false,
 					"sourceSize": {
-						"w": 96,
-						"h": 96
+						"w": 50,
+						"h": 50
 					},
 					"spriteSourceSize": {
 						"x": 0,
-						"y": 18,
-						"w": 96,
-						"h": 61
+						"y": 0,
+						"w": 50,
+						"h": 50
 					},
 					"frame": {
-						"x": 611,
-						"y": 500,
-						"w": 96,
-						"h": 61
+						"x": 248,
+						"y": 1,
+						"w": 50,
+						"h": 50
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "gem_04",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 50,
+						"h": 50
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 50,
+						"h": 50
+					},
+					"frame": {
+						"x": 301,
+						"y": 1,
+						"w": 50,
+						"h": 50
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "gem_05",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 50,
+						"h": 50
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 50,
+						"h": 50
+					},
+					"frame": {
+						"x": 354,
+						"y": 1,
+						"w": 50,
+						"h": 50
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "playboard",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 383,
+						"h": 572
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 383,
+						"h": 572
+					},
+					"frame": {
+						"x": 1,
+						"y": 54,
+						"w": 383,
+						"h": 572
 					},
 					"anchor": {
 						"x": 0.5,
@@ -140,6 +190,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:12e287ab993c2d08b2e892ca10fde862:f2246e4f23b723efff3e9b5fa7d7df19:03f91ab73e0f4667800419161e658c40$"
+		"smartupdate": "$TexturePacker:SmartUpdate:cb69b13cba9d9c970263e582a84471e1:05ae48d9b0bd3084fcaaaa7502f89f59:03f91ab73e0f4667800419161e658c40$"
 	}
 }

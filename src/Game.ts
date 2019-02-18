@@ -39,7 +39,7 @@ export class Game extends Phaser.Game {
     }x${this.scale.height} | View - ${Math.trunc(viewBox.width)}x${Math.trunc(
       viewBox.height,
     )} - ${viewBox.aspectRatio} | Orientation - ${
-      this.scale.isLandscape ? 'Landscape' : 'Portrait'
+      this.scale.isGameLandscape ? 'Landscape' : 'Portrait'
     } `;
     console.log.apply(console, Game._consoleArgs);
     this._context.injector.bind('game').toConstantValue(this);

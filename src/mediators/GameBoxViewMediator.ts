@@ -16,12 +16,12 @@ export class GameBoxViewMediator extends AbstractViewMediator<GameBoxView> {
   public initialize(): void {
     super.initialize();
     this.view.setPosition(
-      (this._game.scale.width - viewBox.width) / 2,
-      (this._game.scale.height - viewBox.height) / 2,
+      this._game.scale.width / 2,
+      this._game.scale.height / 2,
     );
     this.view.setSize(designWidth, designHeight);
     this.view.setDisplaySize(viewBox.width, viewBox.height);
-    // this.view.build();
+    this.view.build();
     this.addReaction(
       () => ({
         width: this._gameModel.width,

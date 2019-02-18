@@ -14,8 +14,6 @@ var Phaser = {
 
   Scene: require('src/scene/Scene'),
 
-  DOM: require('src/dom'),
-
   Scale: require('src/scale'),
 
   Scenes: { ScenePlugin: require('src/scene/ScenePlugin') },
@@ -37,28 +35,14 @@ var Phaser = {
 
     RenderTexture: require('src/gameobjects/rendertexture/RenderTexture'),
 
-    BitmapText: require('src/gameobjects/bitmaptext/static/BitmapText'),
-
-    DynamicBitmapText: require('src/gameobjects/bitmaptext/dynamic/DynamicBitmapText'),
+    Text: require('src/gameobjects/text/static/Text'),
 
     Factories: {
       Image: require('src/gameobjects/image/ImageFactory'),
-      Sprite: require('src/gameobjects/sprite/SpriteFactory'),
       Container: require('src/gameobjects/container/ContainerFactory'),
       Text: require('src/gameobjects/text/static/TextFactory'),
-      BitmapText: require('src/gameobjects/bitmaptext/static/BitmapTextFactory'),
-      DynamicBitmapText: require('src/gameobjects/bitmaptext/dynamic/DynamicBitmapTextFactory'),
       RectangleFactory: require('src/gameobjects/shape/rectangle/RectangleFactory'),
       TileSpriteFactory: require('src/gameobjects/tilesprite/TileSpriteFactory'),
-    },
-
-    Creators: {
-      Image: require('src/gameobjects/image/ImageCreator'),
-      Sprite: require('src/gameobjects/sprite/SpriteCreator'),
-      Container: require('src/gameobjects/container/ContainerCreator'),
-      Text: require('src/gameobjects/text/static/TextCreator'),
-      BitmapText: require('src/gameobjects/bitmaptext/static/BitmapTextCreator'),
-      DynamicBitmapText: require('src/gameobjects/bitmaptext/dynamic/DynamicBitmapTextCreator'),
     },
   },
 
@@ -96,6 +80,13 @@ var Phaser = {
 
   Structs: {
     Size: require('src/structs/Size'),
+  },
+
+  Input: {
+    Events: {
+      POINTER_DOWN: require('src/input/events/POINTER_DOWN_EVENT'),
+      POINTER_UP: require('src/input/events/POINTER_UP_EVENT'),
+    },
   },
 };
 

@@ -7,13 +7,12 @@ import webfontloader from 'webfontloader';
 import { Fonts } from './assets';
 import { CANVAS_CONTAINER_ID } from './constants';
 import { Game } from './Game';
-import { isIPhoneXEmulation } from './utils';
 import { getScale } from './layouts';
-
+import { isIPhoneXEmulation } from './utils';
 
 function startGame(): void {
   const gameConfig: GameConfig = {
-    type: Phaser.WEBGL,
+    type: Phaser.CANVAS,
     scale: {
       parent: CANVAS_CONTAINER_ID,
       ...getScale(),
@@ -30,12 +29,6 @@ function startGame(): void {
           key: 'i18nPlugin',
           mapping: 'i18n',
           plugin: I18nPlugin,
-        },
-        {
-          key: 'SpineWebGLPlugin',
-          mapping: 'spine',
-          // @ts-ignore
-          plugin: Phaser.SpineWebGLPlugin,
         },
       ],
     },

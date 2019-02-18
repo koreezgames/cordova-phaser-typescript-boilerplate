@@ -117,11 +117,10 @@ export class BgScene extends AbstractScene {
     this._layer2Snow.tilePositionX += Math.random() * 1000;
     this._layer3Snow.tilePositionX += Math.random() * 1000;
     this._layer4Clouds.tilePositionX += Math.random() * 1000;
-    // this._layer1Snow.scrollFactorX
   }
 
   public update(): void {
-    const speed = 20;
+    const speed = 10;
     this._layer1Tree.tilePositionX += speed;
     this._layer1Snow.tilePositionX += speed * 0.8;
     this._layer2Tree.tilePositionX += speed * 0.7;

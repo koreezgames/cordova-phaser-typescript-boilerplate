@@ -15,6 +15,14 @@ if (width > height) {
   designWidth = +process.env.DESIGN_HEIGHT;
 }
 
+export function portraitOrLandscape<T>(
+  scale: Phaser.Scale.ScaleManager,
+  portrait: T,
+  landscape: T,
+): T {
+  return scale.isGamePortrait ? portrait : landscape;
+}
+
 export function getScale(): {
   autoCenter: any;
   mode: any;
