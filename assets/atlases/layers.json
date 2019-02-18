@@ -1,0 +1,195 @@
+{
+	"textures": [
+		{
+			"image": "layers.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 2046,
+				"h": 1266
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "layer4_clouds",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 2040,
+						"h": 489
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 2040,
+						"h": 489
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 2040,
+						"h": 489
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "layer0",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1,
+						"h": 1136
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1,
+						"h": 1136
+					},
+					"frame": {
+						"x": 2044,
+						"y": 1,
+						"w": 1,
+						"h": 1136
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "layer1_snow",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 2040,
+						"h": 69
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 2040,
+						"h": 69
+					},
+					"frame": {
+						"x": 1,
+						"y": 493,
+						"w": 2040,
+						"h": 69
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "layer2_snow",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 2040,
+						"h": 58
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 2040,
+						"h": 58
+					},
+					"frame": {
+						"x": 1,
+						"y": 565,
+						"w": 2040,
+						"h": 58
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "layer3_snow",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 2040,
+						"h": 56
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 2040,
+						"h": 56
+					},
+					"frame": {
+						"x": 1,
+						"y": 626,
+						"w": 2040,
+						"h": 56
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "layer1_tree",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 2040,
+						"h": 349
+					},
+					"spriteSourceSize": {
+						"x": 26,
+						"y": 0,
+						"w": 1980,
+						"h": 349
+					},
+					"frame": {
+						"x": 1,
+						"y": 685,
+						"w": 1980,
+						"h": 349
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "layer2_tree",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 2040,
+						"h": 228
+					},
+					"spriteSourceSize": {
+						"x": 234,
+						"y": 0,
+						"w": 1775,
+						"h": 228
+					},
+					"frame": {
+						"x": 1,
+						"y": 1037,
+						"w": 1775,
+						"h": 228
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:a1db954d33efd2d3de1c4fb342bb63a2:b0e51bf3be0859be2ccc07cb432416d4:a07c345d7b1a5064b81779bc6aedd89e$"
+	}
+}

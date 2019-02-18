@@ -21,7 +21,7 @@ export class GameBoxViewMediator extends AbstractViewMediator<GameBoxView> {
     );
     this.view.setSize(designWidth, designHeight);
     this.view.setDisplaySize(viewBox.width, viewBox.height);
-    this.view.build();
+    // this.view.build();
     this.addReaction(
       () => ({
         width: this._gameModel.width,
