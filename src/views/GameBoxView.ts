@@ -10,10 +10,6 @@ export class GameBoxView extends AbstractView {
   private _ninePatch: NinePatch;
 
   public build(): void {
-    const rectangle = this.scene.add
-      .rectangle(-this.width / 2, -this.height / 2, this.width, this.height)
-      .setOrigin(0);
-    rectangle.setStrokeStyle(1, 0xff0000);
     const lifeBar = this.scene.add.image(
       0,
       -this.height * 0.5 + 30,
@@ -22,6 +18,13 @@ export class GameBoxView extends AbstractView {
     );
     this.add(lifeBar);
     this.add(new ChipsGroup(this.scene, 0, 20));
-    this.add(rectangle);
+
+    if (__ENV__ !== 'production') {
+      const rectangle = this.scene.add
+        .rectangle(-this.width / 2, -this.height / 2, this.width, this.height)
+        .setOrigin(0);
+      rectangle.setStrokeStyle(1, 0xff0000);
+      this.add(rectangle);
+    }
   }
 }

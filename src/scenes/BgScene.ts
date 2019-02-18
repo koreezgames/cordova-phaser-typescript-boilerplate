@@ -1,4 +1,5 @@
 import { Atlases } from '../assets';
+import { viewBox } from '../layouts';
 import { AbstractScene } from './AbstractScene';
 
 export class BgScene extends AbstractScene {
@@ -120,7 +121,7 @@ export class BgScene extends AbstractScene {
   }
 
   public update(): void {
-    const speed = 10;
+    const speed = 10 * viewBox.scale;
     this._layer1Tree.tilePositionX += speed;
     this._layer1Snow.tilePositionX += speed * 0.8;
     this._layer2Tree.tilePositionX += speed * 0.7;
