@@ -4,7 +4,7 @@
         <key>fileFormatVersion</key>
         <int>4</int>
         <key>texturePackerVersion</key>
-        <string>4.10.0</string>
+        <string>4.12.0</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -181,29 +181,46 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">main/bg.png</key>
+            <key type="filename">main/gem_01.png</key>
+            <key type="filename">main/gem_02.png</key>
+            <key type="filename">main/gem_03.png</key>
+            <key type="filename">main/gem_04.png</key>
+            <key type="filename">main/gem_05.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>270,480,540,960</rect>
+                <rect>15,15,30,30</rect>
                 <key>scale9Paddings</key>
-                <rect>270,480,540,960</rect>
+                <rect>15,15,30,30</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">main/mushroom.png</key>
+            <key type="filename">main/lifebar.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>16,16,32,32</rect>
+                <rect>51,10,101,21</rect>
                 <key>scale9Paddings</key>
-                <rect>16,16,32,32</rect>
+                <rect>51,10,101,21</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">main/playboard.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>121,181,242,361</rect>
+                <key>scale9Paddings</key>
+                <rect>121,181,242,361</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
