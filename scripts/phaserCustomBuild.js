@@ -42,6 +42,7 @@ var Phaser = {
       Container: require('src/gameobjects/container/ContainerFactory'),
       Text: require('src/gameobjects/text/static/TextFactory'),
       RectangleFactory: require('src/gameobjects/shape/rectangle/RectangleFactory'),
+      LineFactory: require('src/gameobjects/shape/line/LineFactory'),
       TileSpriteFactory: require('src/gameobjects/tilesprite/TileSpriteFactory'),
     },
   },

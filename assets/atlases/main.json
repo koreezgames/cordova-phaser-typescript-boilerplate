@@ -4,30 +4,80 @@
 			"image": "main.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 405,
-				"h": 627
+				"w": 1103,
+				"h": 1747
 			},
-			"scale": 1,
+			"scale": 2.8,
 			"frames": [
 				{
 					"filename": "lifebar",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 138,
-						"h": 28
+						"w": 386,
+						"h": 78
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 138,
-						"h": 28
+						"w": 386,
+						"h": 78
 					},
 					"frame": {
 						"x": 1,
 						"y": 1,
-						"w": 138,
-						"h": 28
+						"w": 386,
+						"h": 78
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "gem_02",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 140,
+						"h": 140
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 140,
+						"h": 138
+					},
+					"frame": {
+						"x": 390,
+						"y": 1,
+						"w": 140,
+						"h": 138
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "gem_04",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 140,
+						"h": 140
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 1,
+						"w": 140,
+						"h": 139
+					},
+					"frame": {
+						"x": 533,
+						"y": 1,
+						"w": 140,
+						"h": 139
 					},
 					"anchor": {
 						"x": 0.5,
@@ -39,45 +89,20 @@
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 50,
-						"h": 50
+						"w": 140,
+						"h": 140
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 50,
-						"h": 50
+						"w": 140,
+						"h": 140
 					},
 					"frame": {
-						"x": 142,
+						"x": 676,
 						"y": 1,
-						"w": 50,
-						"h": 50
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "gem_02",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 50,
-						"h": 50
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 50,
-						"h": 50
-					},
-					"frame": {
-						"x": 195,
-						"y": 1,
-						"w": 50,
-						"h": 50
+						"w": 140,
+						"h": 140
 					},
 					"anchor": {
 						"x": 0.5,
@@ -89,45 +114,20 @@
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 50,
-						"h": 50
+						"w": 140,
+						"h": 140
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 50,
-						"h": 50
+						"w": 140,
+						"h": 140
 					},
 					"frame": {
-						"x": 248,
+						"x": 819,
 						"y": 1,
-						"w": 50,
-						"h": 50
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "gem_04",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 50,
-						"h": 50
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 50,
-						"h": 50
-					},
-					"frame": {
-						"x": 301,
-						"y": 1,
-						"w": 50,
-						"h": 50
+						"w": 140,
+						"h": 140
 					},
 					"anchor": {
 						"x": 0.5,
@@ -139,20 +139,20 @@
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 50,
-						"h": 50
+						"w": 140,
+						"h": 140
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 50,
-						"h": 50
+						"w": 140,
+						"h": 140
 					},
 					"frame": {
-						"x": 354,
+						"x": 962,
 						"y": 1,
-						"w": 50,
-						"h": 50
+						"w": 140,
+						"h": 140
 					},
 					"anchor": {
 						"x": 0.5,
@@ -164,20 +164,20 @@
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 383,
-						"h": 572
+						"w": 1072,
+						"h": 1602
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 383,
-						"h": 572
+						"w": 1072,
+						"h": 1602
 					},
 					"frame": {
 						"x": 1,
-						"y": 54,
-						"w": 383,
-						"h": 572
+						"y": 144,
+						"w": 1072,
+						"h": 1602
 					},
 					"anchor": {
 						"x": 0.5,
@@ -190,6 +190,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:cb69b13cba9d9c970263e582a84471e1:05ae48d9b0bd3084fcaaaa7502f89f59:03f91ab73e0f4667800419161e658c40$"
+		"smartupdate": "$TexturePacker:SmartUpdate:098da04e77e3a3abac056235425c2078:05ae48d9b0bd3084fcaaaa7502f89f59:03f91ab73e0f4667800419161e658c40$"
 	}
 }

@@ -10,16 +10,21 @@ export class ChipsGroup extends AbstractView {
       .setRotation(this.scene.scale.isGameLandscape ? Math.PI / 2 : 0);
     this.add(playboard);
 
+    this.setSize(
+      portraitOrLandscape(this.scene.scale, playboard.width, playboard.height),
+      portraitOrLandscape(this.scene.scale, playboard.height, playboard.width),
+    );
+
     const startX =
       playboard.x -
       portraitOrLandscape(this.scene.scale, playboard.width, playboard.height) /
         2 +
-      10;
+      30;
     const startY =
       playboard.y -
       portraitOrLandscape(this.scene.scale, playboard.height, playboard.width) /
         2 +
-      10;
+      30;
 
     const xxx = portraitOrLandscape(this.scene.scale, 6, 9);
     const yyy = portraitOrLandscape(this.scene.scale, 9, 6);
@@ -31,11 +36,11 @@ export class ChipsGroup extends AbstractView {
 
         const gemX =
           startX +
-          xx * (Atlases.Main.Atlas.FrameSourceSizes.Gem5.w + 13) +
+          xx * (Atlases.Main.Atlas.FrameSourceSizes.Gem5.w + 35) +
           Atlases.Main.Atlas.FrameSourceSizes.Gem5.w / 2;
         const gemY =
           startY +
-          yy * (Atlases.Main.Atlas.FrameSourceSizes.Gem5.h + 12.5) +
+          yy * (Atlases.Main.Atlas.FrameSourceSizes.Gem5.h + 35) +
           Atlases.Main.Atlas.FrameSourceSizes.Gem5.h / 2;
 
         const gem = this.scene.add.image(
