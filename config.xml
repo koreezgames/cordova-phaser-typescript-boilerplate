@@ -82,5 +82,5 @@
     <plugin name="cordova-custom-config" spec="^5.0.2" />
     <plugin name="cordova-plugin-fullscreen" spec="^1.2.0" />
     <plugin name="cordova-plugin-device" spec="^2.0.2" />
-    <engine name="ios" spec="^4.5.5" />
+    <engine name="ios" spec="^5.0.0" />
 </widget>

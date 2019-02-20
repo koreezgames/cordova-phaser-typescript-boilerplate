@@ -10,6 +10,8 @@ import { SceneKey } from '../constants/SceneKey';
 import { AbstractScene } from './AbstractScene';
 
 export class PreloadScene extends AbstractScene {
+  public i18n: { initialize(config: object, cb: Function): void };
+
   public preload(): void {
     this.i18n.initialize(
       {

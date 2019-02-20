@@ -1,4 +1,3 @@
-import { Ii18nAdapter } from '@koreez/phaser3-i18n';
 import {
   INinePatchCreator,
   INinePatchFactory,
@@ -7,7 +6,6 @@ import {
 export abstract class AbstractScene extends Phaser.Scene {
   public add: INinePatchFactory;
   public make: INinePatchCreator;
-  public i18n: Ii18nAdapter;
 
   public onCreationCompleteCb: () => void;
   private static readonly _consoleArgs: string[] = [
