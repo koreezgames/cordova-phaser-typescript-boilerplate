@@ -1,5 +1,5 @@
 {
-  "name": "cordova-phaser-typescript-boilerplate",
+  "name": "phaser-typescript-boilerplate",
   "author": "Koreez LLC <hello@koreez.com>",
   "version": "1.0.0",
   "private": true,
@@ -11,21 +11,16 @@
     "tslint-check": "tslint-config-prettier-check ./tslint.json",
     "build": "npm run build-assets && npm run build-phaser && webpack --config config/webpack.config.js --env production --mode production --progress --colors",
     "build-phaser": "webpack --config config/webpack.phaser.config.js --display-modules --mode production --progress --colors",
-    "build-ios": "npm run build && cordova prepare ios",
-    "build-android": "npm run build && cordova prepare android",
     "stats": "webpack --config config/webpack.config.js --env production --mode production --profile --json > stats.json",
     "start": "npm run build-assets && npm run build-phaser && webpack-dev-server --config config/webpack.config.js --mode development --host 0.0.0.0",
     "start-device": "npm run build-assets && npm run build-phaser && webpack-dev-server --config config/webpack.config.js --env device --mode development --host 0.0.0.0",
     "build-assets": "node ./scripts/generateAssetsClass.js",
     "debug-assets": "node --nolazy --inspect-brk=9229 ./scripts/generateAssetsClass.js",
     "build-quick": "webpack --config config/webpack.config.js --env production --mode development --progress --colors",
-    "build-quick-ios": "npm run build-quick && cordova prepare ios",
-    "build-quick-android": "npm run build-quick && cordova prepare android",
     "serve": "npm run build && serve -p 3000 -s www",
     "build-firebase": "npm run build && firebase deploy --only hosting"
   },
   "devDependencies": {
-    "@types/cordova": "0.0.34",
     "@types/node": "^11.9.4",
     "@types/webfontloader": "^1.6.29",
     "case-sensitive-paths-webpack-plugin": "^2.2.0",
@@ -70,28 +65,8 @@
     "@robotlegsjs/phaser": "^1.0.1",
     "@robotlegsjs/signalcommandmap": "^1.0.0",
     "@robotlegsjs/signals": "^1.0.0",
-    "cordova-custom-config": "^5.0.3",
-    "cordova-ios": "^5.0.0",
-    "cordova-plugin-cocoapod-support": "^1.6.0",
-    "cordova-plugin-device": "^2.0.2",
-    "cordova-plugin-fullscreen": "^1.2.0",
-    "cordova-plugin-multidex": "^0.1.4",
-    "cordova-plugin-splashscreen": "^5.0.2",
-    "cordova-plugin-statusbar": "^2.4.2",
     "mobx": "^5.9.0",
     "reflect-metadata": "^0.1.13",
     "webfontloader": "^1.6.28"
-  },
-  "cordova": {
-    "platforms": [
-      "ios"
-    ],
-    "plugins": {
-      "cordova-plugin-splashscreen": {},
-      "cordova-plugin-statusbar": {},
-      "cordova-custom-config": {},
-      "cordova-plugin-fullscreen": {},
-      "cordova-plugin-device": {}
-    }
   }
 }

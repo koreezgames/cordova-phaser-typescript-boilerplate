@@ -5,11 +5,6 @@ interface Navigator {
 }
 
 interface Window {
-  device: Device;
   GameAnalytics: any;
   IronSourceAds: any;
-}
-
-interface CordovaPlugins {
-  notification: any;
 }

@@ -3,7 +3,6 @@ import 'reflect-metadata';
 import './phaser';
 import { I18nPlugin } from '@koreez/phaser3-i18n';
 import { NinePatchPlugin } from '@koreez/phaser3-ninepatch';
-import { isNullOrUndefined } from 'util';
 import webfontloader from 'webfontloader';
 import { Fonts } from './assets';
 import { CANVAS_CONTAINER_ID } from './constants';
@@ -70,22 +69,3 @@ window.onload = () => {
     startGame();
   });
 };
-
-document.addEventListener('deviceready', () => {
-  if (window.cordova) {
-    if (window.cordova.platformId === 'android') {
-      window.StatusBar.styleDefault();
-      window.StatusBar.hide();
-      if (!isNullOrUndefined(window.AndroidFullScreen)) {
-        AndroidFullScreen.isSupported(
-          () => {
-            AndroidFullScreen.immersiveMode();
-          },
-          (error: Error) => {
-            console.error(error);
-          },
-        );
-      }
-    }
-  }
-});

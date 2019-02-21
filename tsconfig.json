@@ -15,5 +15,4 @@
     "lib": ["dom", "es2015"]
   },
   "include": ["./src/**/*", "./types/**/*", "./plugins/**/*"],
-  "files": ["./node_modules/cordova-plugin-statusbar/types/index.d.ts"]
 }

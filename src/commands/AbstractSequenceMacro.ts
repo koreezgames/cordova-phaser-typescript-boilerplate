@@ -13,9 +13,7 @@ export abstract class AbstractSequenceMacro extends SequenceMacro {
   ];
 
   public execute(payload?: any, ...payloads: any[]): void {
-    AbstractSequenceMacro._consoleArgs[0] = `%c %c %c ${
-      this.constructor.name
-    }: execute %c %c `;
+    AbstractSequenceMacro._consoleArgs[0] = `%c %c %c ${this.constructor.name}: execute %c %c `;
     console.log.apply(console, AbstractSequenceMacro._consoleArgs);
     super.execute(payload, ...payloads);
   }
